@@ -44,7 +44,7 @@ public class MovementController : MonoBehaviour
     public float _componentInitTimeStamp = 0.0f;
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         InputManager.Instance.registerAxis("Horizontal", OnInputXAxis);
         InputManager.Instance.RegisterKeyDown("jump", OnJumpPressed);
