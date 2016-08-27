@@ -73,9 +73,7 @@ public class MovementController : MonoBehaviour
 
         //if needed, perform jump
         jump();
-
-        if (_velocity.magnitude > _maxVelocity || inputmovement.x == 0)
-            _velocity.x *= _velFriction * ((_isTouchingGround) ? Mathf.Abs(inputmovement.x) : 1);
+        _velocity.x *= _velFriction;
         
         if (_velocity.sqrMagnitude < float.Epsilon)
         {
@@ -92,8 +90,11 @@ public class MovementController : MonoBehaviour
             _velocity.y = -14.0f;
 
         Vector2 oldPos = transform.position;
+
+        Debug.Log(_velocity);
         
-        Controller2D.Flags flags = controller.move(_velocity, Time.deltaTime);
+        //PERFORM MOVEMENT
+        Controller2D.Flags flags = controller.move(_velocity, Time.fixedDeltaTime);
 
         if(flags.below)
         {
@@ -164,6 +165,7 @@ public class MovementController : MonoBehaviour
     public void OnInputXAxis(string axe, float value)
     {
         inputmovement.x = value;
+
     }
 
     public void OnJumpPressed(string key)

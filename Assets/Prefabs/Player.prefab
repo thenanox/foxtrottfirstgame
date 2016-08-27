@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 0}
   _maxVelocity: 5
-  _acceleration: 10
+  _acceleration: 1
   _jumpForce: 5
   _gravity: 9
   jumpAllowed: 1
