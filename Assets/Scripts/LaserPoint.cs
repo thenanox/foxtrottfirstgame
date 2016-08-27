@@ -22,7 +22,7 @@ public class LaserPoint : MonoBehaviour {
 	void FixedUpdate () {
         Vector2 direction = (fireTransform.transform.position - transform.position).normalized;
         Ray2D ray = new Ray2D(fireTransform.transform.position, direction);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 2000f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 2000f, LayerMask.GetMask("Ground", "Box"));
         int hitrounded = Mathf.RoundToInt(hit.distance + 0.2f);
         if (hitrounded != lasersShot.Length)
         {

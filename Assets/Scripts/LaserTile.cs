@@ -12,4 +12,11 @@ public class LaserTile : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Player") {
+            //coll.gameObject.GetComponents<MovementController>().kill();
+        }
+    }
 }
