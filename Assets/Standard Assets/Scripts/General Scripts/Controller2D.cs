@@ -47,11 +47,11 @@ public class Controller2D : MonoBehaviour {
         //first raycast
         Vector2 ray = new Vector2(transform.position.x + (extents.x * rayDir.x), transform.position.y + extents.y - 0.05f);
 
-        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir,rayDistance , layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir,rayDistance * Time.fixedDeltaTime, layerMask);
 
         if (hit)
         {
-            direction.x = hit.point.y - ray.y;
+            direction.x = hit.point.x - ray.x;
             rayDistance = Mathf.Abs(direction.y);
             result.sides = true;
             if (isGoingRight)
@@ -66,11 +66,13 @@ public class Controller2D : MonoBehaviour {
         //second raycast
         ray = new Vector2(transform.position.x + (extents.x * rayDir.x), transform.position.y - extents.y + 0.05f);
 
-        hit = Physics2D.Raycast(ray, rayDir, rayDistance, layerMask);
+        //Debug.DrawRay(ray, rayDir * rayDistance * Time.fixedDeltaTime, Color.red, 5.0f);
+
+        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, layerMask);
 
         if (hit)
         {
-            direction.y = hit.point.y - ray.y;
+            direction.x = hit.point.x - ray.x;
             rayDistance = Mathf.Abs(direction.y);
             result.sides = true;
             if (isGoingRight)

@@ -74,7 +74,8 @@ public class MovementController : MonoBehaviour
         //if needed, perform jump
         jump();
 
-        _velocity.x *= _velFriction * ((_isTouchingGround) ? Mathf.Abs(inputmovement.x) : 1);
+        if (_velocity.magnitude > _maxVelocity || inputmovement.x == 0)
+            _velocity.x *= _velFriction * ((_isTouchingGround) ? Mathf.Abs(inputmovement.x) : 1);
         
         if (_velocity.sqrMagnitude < float.Epsilon)
         {
