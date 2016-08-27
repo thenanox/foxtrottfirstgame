@@ -44,7 +44,7 @@ public class MovementController : MonoBehaviour
     public float _componentInitTimeStamp = 0.0f;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         InputManager.Instance.registerAxis("Horizontal", OnInputXAxis);
         InputManager.Instance.RegisterKeyDown("jump", OnJumpPressed);
@@ -53,7 +53,6 @@ public class MovementController : MonoBehaviour
         // has to implement IMovementCommands interface for this
         // to work as expected.
         input = GetComponent<InputManager>();
-        _transform = transform;
         _velocity = Vector3.zero;
         _isTouchingGround = true;
 
@@ -91,7 +90,7 @@ public class MovementController : MonoBehaviour
         if (_velocity.y < -14.0f)
             _velocity.y = -14.0f;
 
-        Vector2 oldPos = _transform.position;
+        Vector2 oldPos = transform.position;
         
         Controller2D.Flags flags = controller.move(_velocity, Time.deltaTime);
 
