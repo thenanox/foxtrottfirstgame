@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TransformableTile : MonoBehaviour {
+public class TransformableTile : BaseTile {
 
     private bool backgroundBorn = false;
+    private Animator animator;
+
 	// Use this for initialization
 	void Start () {
 	    if(gameObject.layer == LayerMask.NameToLayer("Background"))
@@ -11,12 +13,14 @@ public class TransformableTile : MonoBehaviour {
             GetComponent<SpriteRenderer>().material.color = Color.grey;
             backgroundBorn = true;
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        animator = GetComponent<Animator>();
+    }
+
+    public override bool cursorOnTile()
+    {
+        animator.SetTrigger("Shake");
+        return true;
+    }
 
     public void originalState()
     {

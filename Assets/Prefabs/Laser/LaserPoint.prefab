@@ -96,10 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0510ccb5a64e74c9f992c5c0c8feec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserBeg: {fileID: 1000012276870598, guid: 77b37408c4a364043be646142062b382, type: 2}
+  laserBeg: {fileID: 1000011339628978, guid: 77b37408c4a364043be646142062b382, type: 2}
   laserMid: {fileID: 1000013510310898, guid: 49ce7bd50adfec64c879d469e48d5210, type: 2}
-  laserEnd: {fileID: 1000010683772536, guid: 071c2f61f7d21b64c8c82a27cda0bef3, type: 2}
-  laserBegEnd: {fileID: 1000012751276642, guid: 42c643c6026caa543a89550a315563ff,
+  laserEnd: {fileID: 1000014105484620, guid: 071c2f61f7d21b64c8c82a27cda0bef3, type: 2}
+  laserBegEnd: {fileID: 1000010355827612, guid: 42c643c6026caa543a89550a315563ff,
     type: 2}
   fireTransform: {fileID: 4000011335407378}
   lasersShot: []
