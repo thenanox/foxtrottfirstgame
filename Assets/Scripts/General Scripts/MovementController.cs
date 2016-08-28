@@ -95,8 +95,6 @@ public class MovementController : MonoBehaviour
             _velocity.y = -14.0f;
 
         Vector2 oldPos = transform.position;
-
-        Debug.Log(_velocity);
         
         //PERFORM MOVEMENT
         Controller2D.Flags flags = controller.move(_velocity, Time.fixedDeltaTime);

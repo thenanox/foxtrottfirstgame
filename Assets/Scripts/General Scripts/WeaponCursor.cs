@@ -18,6 +18,11 @@ public class WeaponCursor : MonoBehaviour {
         }
     }
 
+    void Awake()
+    {
+        cursor = GameObject.Instantiate(cursor);
+    }
+
 	void Start()
     {
         InputManager.Instance.registerAxis("MoveCursorX", OnCursorX);

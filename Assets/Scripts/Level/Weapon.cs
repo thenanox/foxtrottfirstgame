@@ -6,6 +6,11 @@ public class Weapon : MonoBehaviour {
     private TransformableTile lastTile;
     public GameObject cursor;
 
+    void Start()
+    {
+        cursor = GetComponent<WeaponCursor>().cursor;
+    }
+
     void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
@@ -23,10 +28,10 @@ public class Weapon : MonoBehaviour {
         Vector3 clickPosition = new Vector3(ray.origin.x, ray.origin.y, 0f);
         Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 10f);
 
-        Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background"));
+        Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background", "Box", "Player"));
 
         //RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 10f, LayerMask.GetMask("Foreground", "Background"));
-        if (hit)
+        if (hit && !(hit.gameObject.layer == LayerMask.NameToLayer("Box") || hit.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
             if (lastTile == hit.transform.gameObject.GetComponent<TransformableTile>())
             {
