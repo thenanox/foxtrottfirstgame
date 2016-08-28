@@ -4,7 +4,9 @@ using System.Collections;
 public class TransformableTile : BaseTile {
 
     private bool backgroundBorn = false;
-    private Animator animator;
+    public Animator animator;
+    public ParticleSystem particles;
+
 
 	// Use this for initialization
 	void Start () {
@@ -14,12 +16,6 @@ public class TransformableTile : BaseTile {
             backgroundBorn = true;
         }
         animator = GetComponent<Animator>();
-    }
-
-    public override bool cursorOnTile()
-    {
-        animator.SetTrigger("Shake");
-        return true;
     }
 
     public void originalState()
@@ -40,11 +36,13 @@ public class TransformableTile : BaseTile {
     {
         if(gameObject.layer == LayerMask.NameToLayer("Background"))
         {
+            animator.SetTrigger("Shake");
             gameObject.layer = LayerMask.NameToLayer("Foreground");
             GetComponent<SpriteRenderer>().material.color = Color.white;
         }
         else
         {
+            animator.SetTrigger("Shake");
             gameObject.layer = LayerMask.NameToLayer("Background");
             GetComponent<SpriteRenderer>().material.color = Color.grey;
         }
