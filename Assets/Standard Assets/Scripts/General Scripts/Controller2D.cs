@@ -91,6 +91,7 @@ public class Controller2D : MonoBehaviour {
 
         Vector2 rayDir = isGoingUp ? Vector2.up : Vector2.down;
 
+        int layerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Box");
         //first raycast
         Vector2 ray = new Vector2(transform.position.x + extents.x - 0.05f, transform.position.y + (extents.y * rayDir.y));
 
