@@ -8,6 +8,9 @@ public class MovementController : MonoBehaviour
     // the direction on this component or the ai
     public InputManager input;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
     // Velocity/Acceleration values
     public float _maxVelocity = 1.0f;
     public float _acceleration = 2f;
@@ -48,6 +51,8 @@ public class MovementController : MonoBehaviour
     {
         InputManager.Instance.registerAxis("Horizontal", OnInputXAxis);
         InputManager.Instance.RegisterKeyDown("jump", OnJumpPressed);
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         // @todo
         // Assign manager by callback. Note that the manager
         // has to implement IMovementCommands interface for this
@@ -96,7 +101,13 @@ public class MovementController : MonoBehaviour
         //PERFORM MOVEMENT
         Controller2D.Flags flags = controller.move(_velocity, Time.fixedDeltaTime);
 
-        if(flags.below)
+        animator.SetFloat("velocity", Mathf.Abs(_velocity.x));
+        if (_velocity.x > 0)
+            spriteRenderer.flipX = false;
+        else if (_velocity.x < 0)
+            spriteRenderer.flipX = true;
+
+        if (flags.below)
         {
             _velocity.y = 0;
             _isTouchingGround = true;
@@ -133,6 +144,7 @@ public class MovementController : MonoBehaviour
             _canJump = false;
             _velocity.y += _jumpForce;
             _isTouchingGround = false;
+            animator.SetTrigger("jump");
         }
         
 

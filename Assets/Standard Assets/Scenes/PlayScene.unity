@@ -426,7 +426,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010450934110, guid: a45985f4fdcf3694c95ba4600f4171dc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.334
       objectReference: {fileID: 0}
     - target: {fileID: 4000010450934110, guid: a45985f4fdcf3694c95ba4600f4171dc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -452,6 +452,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212000012217070756, guid: a45985f4fdcf3694c95ba4600f4171dc,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5851c7a296f90d646a605e65c45cf303,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a45985f4fdcf3694c95ba4600f4171dc, type: 2}
   m_IsPrefabParent: 0
@@ -1133,6 +1139,7 @@ GameObject:
   - 4: {fileID: 1332180356}
   - 114: {fileID: 1332180355}
   - 114: {fileID: 1332180357}
+  - 95: {fileID: 1332180358}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1176,6 +1183,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2017288433}
+--- !u!95 &1332180358
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1332180354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee1cce108b2ea854faa14904f238df51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1501952667
 GameObject:
   m_ObjectHideFlags: 0
