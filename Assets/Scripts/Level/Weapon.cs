@@ -49,9 +49,11 @@ public class Weapon : MonoBehaviour {
 
     public void updateCursor()
     {
+
+        float asd = Mathf.Abs(cursor.transform.position.x - Mathf.Round(transform.position.x));
         while (Mathf.Abs(cursor.transform.position.x - Mathf.Round(transform.position.x)) > GetComponent<WeaponCursor>().distance)
         {
-            if (cursor.transform.position.x - Mathf.Round(transform.position.y) < 0)
+            if (cursor.transform.position.x - Mathf.Round(transform.position.x) < 0)
             {
                 cursor.transform.Translate(Vector3.right);
             }
