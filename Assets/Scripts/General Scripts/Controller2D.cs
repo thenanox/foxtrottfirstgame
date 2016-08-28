@@ -59,6 +59,12 @@ public class Controller2D : MonoBehaviour {
             {
                 direction.x -= extents.x;
             }
+
+
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Box"))
+            {
+                hit.rigidbody.AddForce(direction*50);
+            }
         }
         //second raycast
         ray = new Vector2(transform.position.x + (extents.x * rayDir.x), transform.position.y - extents.y + 0.05f);
