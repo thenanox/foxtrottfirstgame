@@ -11,6 +11,11 @@ public class SceneSwitcher : MonoBehaviour {
 
     public Slider bar;
 
+    void OnEnable()
+    {
+        UnityEngine.Cursor.visible = true;
+    }
+
     public IEnumerator loadLevel(int level)
     {
         async = SceneManager.LoadSceneAsync(level);

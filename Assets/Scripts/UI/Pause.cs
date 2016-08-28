@@ -6,6 +6,16 @@ public class Pause : MonoBehaviour {
 
     public GameObject pauseMenu;
 
+    void OnEnable()
+    {
+        UnityEngine.Cursor.visible = true;
+    }
+
+    void OnDisable()
+    {
+        UnityEngine.Cursor.visible = false;
+    }
+
 	public void exitToMainMenu()
     {
         SceneManager.LoadScene(0);

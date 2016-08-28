@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         InputManager.Instance.RegisterKeyDown("pause", pauseGame);
+        UnityEngine.Cursor.visible = false;
     }
 
     public void pauseGame(string key)
