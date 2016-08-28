@@ -3,9 +3,14 @@ using System.Collections;
 
 public class TransformableTile : MonoBehaviour {
 
+    private bool backgroundBorn = false;
 	// Use this for initialization
 	void Start () {
-	
+	    if(gameObject.layer == LayerMask.NameToLayer("Background"))
+        {
+            GetComponent<SpriteRenderer>().material.color = Color.grey;
+            backgroundBorn = true;
+        }
 	}
 	
 	// Update is called once per frame
@@ -13,25 +18,31 @@ public class TransformableTile : MonoBehaviour {
 	
 	}
 
-    public bool isEnabled()
+    public void originalState()
     {
-        return gameObject.layer == LayerMask.NameToLayer("Ground");
+        if (backgroundBorn)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Background");
+            GetComponent<SpriteRenderer>().material.color = Color.grey;
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Foreground");
+            GetComponent<SpriteRenderer>().material.color = Color.white;
+        }
     }
 
-    public bool isDisabled()
+    public void transformState()
     {
-        return gameObject.layer == LayerMask.NameToLayer("Background");
-    }
-
-    public void EnableTile()
-    {
-        gameObject.layer = LayerMask.NameToLayer("Ground");
-        GetComponent<SpriteRenderer>().material.color = Color.white;
-    }
-
-    public void DisableTile()
-    {
-        gameObject.layer = LayerMask.NameToLayer("Background");
-        GetComponent<SpriteRenderer>().material.color = Color.grey;
+        if(gameObject.layer == LayerMask.NameToLayer("Background"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Foreground");
+            GetComponent<SpriteRenderer>().material.color = Color.white;
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Background");
+            GetComponent<SpriteRenderer>().material.color = Color.grey;
+        }
     }
 }

@@ -41,13 +41,10 @@ public class Controller2D : MonoBehaviour {
 
         Vector2 rayDir = isGoingRight ? Vector2.right : Vector2.left;
 
-        int layerMask = 1 << LayerMask.NameToLayer("Ground");
-
-
         //first raycast
         Vector2 ray = new Vector2(transform.position.x + (extents.x * rayDir.x), transform.position.y + extents.y - 0.05f);
 
-        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir,rayDistance * Time.fixedDeltaTime, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir,rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
 
         if (hit)
         {
@@ -68,7 +65,7 @@ public class Controller2D : MonoBehaviour {
 
         //Debug.DrawRay(ray, rayDir * rayDistance * Time.fixedDeltaTime, Color.red, 5.0f);
 
-        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, layerMask);
+        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
 
         if (hit)
         {
@@ -94,13 +91,10 @@ public class Controller2D : MonoBehaviour {
 
         Vector2 rayDir = isGoingUp ? Vector2.up : Vector2.down;
 
-        int layerMask = 1 << LayerMask.NameToLayer("Ground");
-
-
         //first raycast
         Vector2 ray = new Vector2(transform.position.x + extents.x - 0.05f, transform.position.y + (extents.y * rayDir.y));
 
-        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
 
         if (hit)
         {
@@ -120,7 +114,7 @@ public class Controller2D : MonoBehaviour {
         //second raycast
         ray = new Vector2(transform.position.x - extents.x + 0.05f, transform.position.y + (extents.y * rayDir.y));
 
-        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, layerMask);
+        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
 
         if (hit)
         {
