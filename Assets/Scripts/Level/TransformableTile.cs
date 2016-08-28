@@ -5,7 +5,6 @@ public class TransformableTile : BaseTile {
 
     private bool backgroundBorn = false;
     public Animator animator;
-    public ParticleSystem particles;
 
 
 	// Use this for initialization

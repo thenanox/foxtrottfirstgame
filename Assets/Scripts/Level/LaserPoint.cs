@@ -34,7 +34,11 @@ public class LaserPoint : MonoBehaviour {
             if (hit)
             {
                 lasersShot = new GameObject[hitrounded];
-                if (hit.distance <= 1)
+                if (hitrounded == 0)
+                {
+                    return;
+                }
+                if (hitrounded == 1)
                 {
                     lasersShot[0] = Instantiate(laserBegEnd, fireTransform.transform.position, fireTransform.transform.rotation) as GameObject;
                 }
