@@ -35,13 +35,11 @@ public class TransformableTile : BaseTile {
     {
         if(gameObject.layer == LayerMask.NameToLayer("Background"))
         {
-            animator.SetTrigger("Shake");
             gameObject.layer = LayerMask.NameToLayer("Foreground");
             GetComponent<SpriteRenderer>().material.color = Color.white;
         }
         else
         {
-            animator.SetTrigger("Shake");
             gameObject.layer = LayerMask.NameToLayer("Background");
             GetComponent<SpriteRenderer>().material.color = Color.grey;
         }
