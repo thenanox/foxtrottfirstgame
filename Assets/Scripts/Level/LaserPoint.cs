@@ -12,8 +12,6 @@ public class LaserPoint : MonoBehaviour {
 
     public GameObject[] lasersShot;
 
-    private GameObject tileShot;
-
 	// Use this for initialization
 	void Start () {
         
@@ -26,7 +24,6 @@ public class LaserPoint : MonoBehaviour {
         int hitrounded = Mathf.RoundToInt(hit.distance + 0.2f);
         if (hitrounded != lasersShot.Length)
         {
-            tileShot = hit.transform.gameObject;
             for(int i = 0; i < lasersShot.Length; i++)
             {
                 Destroy(lasersShot[i]);
