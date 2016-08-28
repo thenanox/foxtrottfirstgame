@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 4
-  cursor: {fileID: 0}
+  cursor: {fileID: 1000012920602160, guid: 37591e63dd4d0624cbb44c1939f65a6c, type: 2}
 --- !u!114 &114000010604042776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b155b0d8f7c39ac49a4a8d7d662a6a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 0}
 --- !u!114 &114000012418363102
 MonoBehaviour:
   m_ObjectHideFlags: 1

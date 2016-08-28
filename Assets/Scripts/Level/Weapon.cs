@@ -6,6 +6,11 @@ public class Weapon : MonoBehaviour {
     private TransformableTile lastTile;
     public GameObject cursor;
 
+    void Start()
+    {
+        cursor = GetComponent<WeaponCursor>().cursor;
+    }
+
     void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
