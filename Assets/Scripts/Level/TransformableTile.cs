@@ -4,6 +4,7 @@ using System.Collections;
 public class TransformableTile : BaseTile {
 
     private bool backgroundBorn = false;
+    private bool transformed = false;
     public Animator animator;
 
 
@@ -23,11 +24,13 @@ public class TransformableTile : BaseTile {
         {
             gameObject.layer = LayerMask.NameToLayer("Background");
             GetComponent<SpriteRenderer>().material.color = Color.grey;
+            animator.SetTrigger("Unshake");
         }
         else
         {
             gameObject.layer = LayerMask.NameToLayer("Foreground");
             GetComponent<SpriteRenderer>().material.color = Color.white;
+            animator.SetTrigger("Unshake");
         }
     }
 
@@ -37,11 +40,13 @@ public class TransformableTile : BaseTile {
         {
             gameObject.layer = LayerMask.NameToLayer("Foreground");
             GetComponent<SpriteRenderer>().material.color = Color.white;
+            animator.SetTrigger("Shake");
         }
         else
         {
             gameObject.layer = LayerMask.NameToLayer("Background");
             GetComponent<SpriteRenderer>().material.color = Color.grey;
+            animator.SetTrigger("Shake");
         }
     }
 }

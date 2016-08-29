@@ -28,27 +28,66 @@ public class Weapon : MonoBehaviour {
         Vector3 clickPosition = new Vector3(ray.origin.x, ray.origin.y, 0f);
         Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 10f);
 
-        Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background", "Box", "Player"));
+        Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background"));
 
         //RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 10f, LayerMask.GetMask("Foreground", "Background"));
-        if (hit && !(hit.gameObject.layer == LayerMask.NameToLayer("Box") || hit.gameObject.layer == LayerMask.NameToLayer("Player")))
+        if (hit)
         {
-            if (lastTile == hit.transform.gameObject.GetComponent<TransformableTile>())
+            Collider2D hitbox = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
+            if (lastTile == null && hitbox == null)
             {
-                hit.gameObject.GetComponent<Animator>().SetTrigger("Shake");
+                lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
+                lastTile.transformState();
             }
-            else
+            else if (hit.gameObject.layer == LayerMask.NameToLayer("Foreground") && lastTile.gameObject.layer == LayerMask.NameToLayer("Foreground"))
             {
-                if (lastTile != null)
-                {
-                    lastTile.originalState();
-                }
                 if (lastTile != hit.transform.gameObject.GetComponent<TransformableTile>())
                 {
+                    lastTile.originalState();
                     lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
-                    hit.gameObject.GetComponent<Animator>().SetTrigger("Shake");
+                    lastTile.transformState();
+                }
+                else
+                {
+                    lastTile.originalState();
+                    lastTile = null;
                 }
             }
+            else if (hit.gameObject.layer == LayerMask.NameToLayer("Background") && !hitbox)
+            {
+                if (lastTile == hit.transform.gameObject.GetComponent<TransformableTile>())
+                {
+                    lastTile.originalState();
+                    lastTile = null;
+
+                }
+                else if (lastTile.gameObject.layer == LayerMask.NameToLayer("Background"))
+                {
+                    Collider2D hitLastileBox = Physics2D.OverlapBox(new Vector2(lastTile.transform.position.x, lastTile.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
+                    if (!hitLastileBox)
+                    {
+                        lastTile.originalState();
+                        lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
+                        lastTile.transformState();
+                    }
+                }
+                else
+                {
+                    lastTile.originalState();
+                    lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
+                    lastTile.transformState();
+                }
+            }
+            else if (lastTile.gameObject.layer == LayerMask.NameToLayer("Background"))
+            {
+                Collider2D hitLastileBox = Physics2D.OverlapBox(new Vector2(lastTile.transform.position.x, lastTile.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
+                if (!hitLastileBox)
+                {
+                    lastTile.originalState();
+                    lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
+                    lastTile.transformState();
+                }
+            }            
         }
     }
 
