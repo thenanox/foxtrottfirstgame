@@ -129,7 +129,6 @@ public class Weapon : MonoBehaviour {
             {
                 cursor.transform.Translate(Vector3.down);
             }
-            
         }
     }
 }
