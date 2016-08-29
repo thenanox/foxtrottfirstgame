@@ -41,7 +41,13 @@ public class Weapon : MonoBehaviour {
             {
                 lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
                 if(lastTile)
+                {
                     lastTile.transformState();
+                }
+                else
+                {
+                    audiosource.PlayOneShot(wrongSound);
+                }  
             }
             else if (hit.gameObject.layer == LayerMask.NameToLayer("Foreground") && lastTile.gameObject.layer == LayerMask.NameToLayer("Foreground"))
             {
@@ -72,8 +78,14 @@ public class Weapon : MonoBehaviour {
                     {
                         lastTile.originalState();
                         lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
-                        if(lastTile)
+                        if (lastTile)
+                        {
                             lastTile.transformState();
+                        }
+                        else
+                        {
+                            audiosource.PlayOneShot(wrongSound);
+                        }
                     } else
                     {
                         audiosource.PlayOneShot(wrongSound);
