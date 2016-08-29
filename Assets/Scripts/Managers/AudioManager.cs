@@ -4,6 +4,7 @@ using System.Collections;
 public class AudioManager : SingletonComponent<AudioManager>
 {
     private AudioSource source;
+    private GameObject sound;
 
     public GameObject gameSoundManager;
 
@@ -14,9 +15,14 @@ public class AudioManager : SingletonComponent<AudioManager>
 
     public void startGame()
     {
-        GameObject sound = GameObject.Instantiate(gameSoundManager);
+        sound = GameObject.Instantiate(gameSoundManager);
         source.Stop();
 
         DontDestroyOnLoad(sound);
+    }
+
+    public void EndGame()
+    {
+        Destroy(sound);
     }
 }

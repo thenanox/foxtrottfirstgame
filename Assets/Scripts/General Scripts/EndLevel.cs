@@ -10,7 +10,12 @@ public class EndLevel : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            if(numberLevel == 6) SceneManager.LoadScene("Standard assets/Scenes/MenuPrincipalEnd");
+            if (numberLevel == 6)
+            {
+                GameObject sound = GameObject.Find("MusicManager(Clone)");
+                Destroy(sound);
+                SceneManager.LoadScene("Standard assets/Scenes/MenuPrincipalEnd");
+            }
             else SceneManager.LoadScene("Levels/Level" + numberLevel);
         }
     }

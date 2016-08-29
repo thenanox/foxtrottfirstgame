@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Weapon : MonoBehaviour {
 
@@ -16,6 +17,12 @@ public class Weapon : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Standard assets/Scenes/MenuPrincipal");
+            GameObject sound = GameObject.Find("MusicManager(Clone)");
+            Destroy(sound);
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TransformTile();
