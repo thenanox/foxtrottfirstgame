@@ -10,7 +10,8 @@ public class EndLevel : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("Levels/Level" + numberLevel);
+            if(numberLevel == 6) SceneManager.LoadScene("Standard assets/Scenes/MenuPrincipalEnd");
+            else SceneManager.LoadScene("Levels/Level" + numberLevel);
         }
     }
 }

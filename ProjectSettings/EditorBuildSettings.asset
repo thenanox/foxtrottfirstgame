@@ -15,3 +15,7 @@ EditorBuildSettings:
     path: Assets/Levels/Level3.unity
   - enabled: 1
     path: Assets/Levels/Level4.unity
+  - enabled: 1
+    path: Assets/Levels/Level5.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/MenuPrincipalEnd.unity
