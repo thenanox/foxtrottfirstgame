@@ -5,10 +5,12 @@ public class Weapon : MonoBehaviour {
 
     private TransformableTile lastTile;
     public GameObject cursor;
+    public AudioSource audioWrong;
 
     void Start()
     {
         cursor = GetComponent<WeaponCursor>().cursor;
+        audioWrong = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -69,6 +71,9 @@ public class Weapon : MonoBehaviour {
                         lastTile.originalState();
                         lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
                         lastTile.transformState();
+                    } else
+                    {
+                        audioWrong.Play();
                     }
                 }
                 else
@@ -86,8 +91,14 @@ public class Weapon : MonoBehaviour {
                     lastTile.originalState();
                     lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
                     lastTile.transformState();
+                } else
+                {
+                    audioWrong.Play();
                 }
-            }            
+            } else
+            {
+                audioWrong.Play();
+            }          
         }
     }
 
