@@ -37,7 +37,7 @@ public class Controller2D : MonoBehaviour {
 
     public void moveHorizontally(ref Vector2 direction, ref Flags result)
     {
-        if (direction.x < float.Epsilon)
+        if (direction.x < float.Epsilon && direction.x > float.Epsilon )
             return;
 
         bool isGoingRight = direction.x > 0;
