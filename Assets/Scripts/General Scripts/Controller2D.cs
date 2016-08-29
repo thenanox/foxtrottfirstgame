@@ -74,7 +74,7 @@ public class Controller2D : MonoBehaviour {
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Box"))
             {
-                hit.rigidbody.GetComponent<BoxMovementController>().AddExternalForce(pushForce);
+                hit.rigidbody.GetComponent<BoxMovementController>().AddExternalForce(pushForce.x * rayDir);
             }
         }
         //second raycast
