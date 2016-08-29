@@ -5,12 +5,13 @@ public class Weapon : MonoBehaviour {
 
     private TransformableTile lastTile;
     public GameObject cursor;
-    public AudioSource audioWrong;
+    public AudioSource audiosource;
+    public AudioClip wrongSound;
 
     void Start()
     {
         cursor = GetComponent<WeaponCursor>().cursor;
-        audioWrong = GetComponent<AudioSource>();
+        audiosource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,7 +40,8 @@ public class Weapon : MonoBehaviour {
             if (lastTile == null && hitbox == null)
             {
                 lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
-                lastTile.transformState();
+                if(lastTile)
+                    lastTile.transformState();
             }
             else if (hit.gameObject.layer == LayerMask.NameToLayer("Foreground") && lastTile.gameObject.layer == LayerMask.NameToLayer("Foreground"))
             {
@@ -70,10 +72,11 @@ public class Weapon : MonoBehaviour {
                     {
                         lastTile.originalState();
                         lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
-                        lastTile.transformState();
+                        if(lastTile)
+                            lastTile.transformState();
                     } else
                     {
-                        audioWrong.Play();
+                        audiosource.PlayOneShot(wrongSound);
                     }
                 }
                 else
@@ -93,11 +96,11 @@ public class Weapon : MonoBehaviour {
                     lastTile.transformState();
                 } else
                 {
-                    audioWrong.Play();
+                    audiosource.PlayOneShot(wrongSound);
                 }
             } else
             {
-                audioWrong.Play();
+                audiosource.PlayOneShot(wrongSound);
             }          
         }
     }
@@ -129,7 +132,6 @@ public class Weapon : MonoBehaviour {
             {
                 cursor.transform.Translate(Vector3.down);
             }
-            
         }
     }
 }

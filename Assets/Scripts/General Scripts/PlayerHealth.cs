@@ -4,21 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
 
+    public AudioSource source;
+    public AudioClip hurt;
+
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
+    void Awake () {
+        source = GetComponent<AudioSource>();
 	}
     
     public void Kill()
     {
-        // Turn the tank off.
-        gameObject.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        source.PlayOneShot(hurt);
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        source.PlayOneShot(hurt);
+
+        Invoke("reloadScene", 2.0f);
     }
 
+    void reloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

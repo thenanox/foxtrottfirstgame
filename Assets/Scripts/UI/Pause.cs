@@ -18,6 +18,11 @@ public class Pause : MonoBehaviour {
 
 	public void exitToMainMenu()
     {
+        GameObject sound = GameObject.FindWithTag("Sound");
+
+        if (sound)
+            Destroy(sound);
+
         SceneManager.LoadScene(0);
     }
 

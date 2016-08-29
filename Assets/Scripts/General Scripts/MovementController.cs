@@ -25,6 +25,9 @@ public class MovementController : MonoBehaviour
     // Needs to be public?
     public Vector2 _velocity = Vector2.zero;
 
+    public AudioClip contact;
+    public AudioSource audioSource;
+
     // Collisions
     private bool _isTouchingGround = false;
     private bool _isTouchingCeiling = false;
@@ -51,6 +54,8 @@ public class MovementController : MonoBehaviour
     {
         InputManager.Instance.registerAxis("Horizontal", OnInputXAxis);
         InputManager.Instance.RegisterKeyDown("jump", OnJumpPressed);
+
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         // @todo
@@ -109,7 +114,10 @@ public class MovementController : MonoBehaviour
         if (flags.below)
         {
             _velocity.y = 0;
+            if(!_isTouchingGround)
+                audioSource.PlayOneShot(contact);
             _isTouchingGround = true;
+            
         }
         else
         {
@@ -119,10 +127,13 @@ public class MovementController : MonoBehaviour
         if (flags.sides)
         {
             _velocity.x = 0;
+            
         }
         if(flags.above)
         {
             _velocity.y = 0;
+            if (!_isTouchingCeiling)
+                audioSource.PlayOneShot(contact);
             _isTouchingCeiling = true;
         }
         else

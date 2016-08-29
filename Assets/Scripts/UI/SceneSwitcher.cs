@@ -39,6 +39,8 @@ public class SceneSwitcher : MonoBehaviour {
 
     public void loadScene(int level)
     {
+        AudioManager.Instance.startGame();
+
         loadingImage.SetActive(true);
         StartCoroutine(loadLevel(level));
     }
