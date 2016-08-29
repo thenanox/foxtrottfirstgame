@@ -7,6 +7,8 @@ public class Controller2D : MonoBehaviour {
 
     private Vector2 extents;
 
+    public Vector2 pushForce = new Vector2(3f, 0f);
+
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -35,6 +37,9 @@ public class Controller2D : MonoBehaviour {
 
     public void moveHorizontally(ref Vector2 direction, ref Flags result)
     {
+        if (direction.x < float.Epsilon)
+            return;
+
         bool isGoingRight = direction.x > 0;
 
         float rayDistance = Mathf.Abs(direction.x); ;
@@ -43,12 +48,18 @@ public class Controller2D : MonoBehaviour {
 
         //first raycast
         Vector2 ray = new Vector2(transform.position.x + (extents.x * rayDir.x), transform.position.y + extents.y - 0.05f);
+        RaycastHit2D hit;
+        if (gameObject.layer != LayerMask.NameToLayer("Box"))
+        {
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
+        }
+        else
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground"));
 
-        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir,rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
-
+        Debug.DrawRay(ray, rayDir * rayDistance * Time.fixedDeltaTime, Color.red, 0.1f);
         if (hit)
         {
-            direction.x = hit.point.x - ray.x;
+            direction.x = (hit.point.x - ray.x) / Time.deltaTime;
             rayDistance = Mathf.Abs(direction.y);
             result.sides = true;
             if (isGoingRight)
@@ -63,7 +74,7 @@ public class Controller2D : MonoBehaviour {
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Box"))
             {
-                hit.rigidbody.AddForce(direction*50);
+                hit.rigidbody.GetComponent<BoxMovementController>().AddExternalForce(pushForce);
             }
         }
         //second raycast
@@ -71,11 +82,18 @@ public class Controller2D : MonoBehaviour {
 
         //Debug.DrawRay(ray, rayDir * rayDistance * Time.fixedDeltaTime, Color.red, 5.0f);
 
-        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
+        
+        if (gameObject.layer != LayerMask.NameToLayer("Box"))
+        {
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
+        }
+        else
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground"));
 
+        Debug.DrawRay(ray, rayDir * rayDistance * Time.fixedDeltaTime, Color.red, 0.1f);
         if (hit)
         {
-            direction.x = hit.point.x - ray.x;
+            direction.x = (hit.point.x - ray.x) / Time.deltaTime;
             rayDistance = Mathf.Abs(direction.y);
             result.sides = true;
             if (isGoingRight)
@@ -93,7 +111,7 @@ public class Controller2D : MonoBehaviour {
     {
         bool isGoingUp = direction.y > 0;
 
-        float rayDistance = Mathf.Abs(direction.y);
+        float rayDistance = Mathf.Abs(direction.y) * Time.fixedDeltaTime;
 
         Vector2 rayDir = isGoingUp ? Vector2.up : Vector2.down;
 
@@ -101,12 +119,20 @@ public class Controller2D : MonoBehaviour {
         //first raycast
         Vector2 ray = new Vector2(transform.position.x + extents.x - 0.05f, transform.position.y + (extents.y * rayDir.y));
 
-        RaycastHit2D hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
+        RaycastHit2D hit;
+        if (gameObject.layer != LayerMask.NameToLayer("Box"))
+        {
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance, LayerMask.GetMask("Foreground", "Box"));
+        }
+        else
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance, LayerMask.GetMask("Foreground"));
+
+        Debug.DrawRay(ray, rayDir * rayDistance , Color.red, 0.1f);
 
         if (hit)
         {
-            direction.y = hit.point.y - ray.y;
-            rayDistance = Mathf.Abs(direction.y);
+            direction.y = (hit.point.y - ray.y)/Time.deltaTime;
+            rayDistance = Mathf.Abs(direction.y) * Time.fixedDeltaTime;
 
             // remember to remove the skinWidth from our deltaMovement
             if (isGoingUp)
@@ -121,11 +147,16 @@ public class Controller2D : MonoBehaviour {
         //second raycast
         ray = new Vector2(transform.position.x - extents.x + 0.05f, transform.position.y + (extents.y * rayDir.y));
 
-        hit = Physics2D.Raycast(ray, rayDir, rayDistance * Time.fixedDeltaTime, LayerMask.GetMask("Foreground", "Box"));
+        if (gameObject.layer != LayerMask.NameToLayer("Box"))
+        {
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance, LayerMask.GetMask("Foreground", "Box"));
+        }
+        else
+            hit = Physics2D.Raycast(ray, rayDir, rayDistance, LayerMask.GetMask("Foreground"));
 
         if (hit)
         {
-            direction.y = hit.point.y - ray.y;
+            direction.y = (hit.point.y - ray.y) / Time.deltaTime;
             rayDistance = Mathf.Abs(direction.y);
 
             // remember to remove the skinWidth from our deltaMovement

@@ -15,7 +15,7 @@ public class MovementController : MonoBehaviour
     public float _maxVelocity = 1.0f;
     public float _acceleration = 2f;
     public float _jumpForce = 5.0f;
-    private float _velFriction;
+    protected float _velFriction;
 
     public float _gravity = 1.0f;
 
@@ -23,7 +23,7 @@ public class MovementController : MonoBehaviour
     public bool jumpAllowed = true;
 
     // Needs to be public?
-    public Vector2 _velocity;
+    public Vector2 _velocity = Vector2.zero;
 
     // Collisions
     private bool _isTouchingGround = false;
@@ -58,8 +58,6 @@ public class MovementController : MonoBehaviour
         // has to implement IMovementCommands interface for this
         // to work as expected.
         input = GetComponent<InputManager>();
-        _velocity = Vector3.zero;
-        _isTouchingGround = true;
 
         controller = GetComponent<Controller2D>();
 
@@ -99,11 +97,14 @@ public class MovementController : MonoBehaviour
         //PERFORM MOVEMENT
         Controller2D.Flags flags = controller.move(_velocity, Time.fixedDeltaTime);
 
-        animator.SetFloat("velocity", Mathf.Abs(_velocity.x));
-        if (_velocity.x > 0)
-            spriteRenderer.flipX = false;
-        else if (_velocity.x < 0)
-            spriteRenderer.flipX = true;
+        if(animator != null)
+        {
+            animator.SetFloat("velocity", Mathf.Abs(_velocity.x));
+            if (_velocity.x > 0)
+                spriteRenderer.flipX = false;
+            else if (_velocity.x < 0)
+                spriteRenderer.flipX = true;
+        }
 
         if (flags.below)
         {
