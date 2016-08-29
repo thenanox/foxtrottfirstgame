@@ -11,9 +11,9 @@ public class Weapon : MonoBehaviour {
         cursor = GetComponent<WeaponCursor>().cursor;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             TransformTile();
         }
