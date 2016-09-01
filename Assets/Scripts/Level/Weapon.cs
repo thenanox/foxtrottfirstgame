@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Standard assets/Scenes/MenuPrincipal");
+            SceneManager.LoadScene("Levels/MenuPrincipal");
             GameObject sound = GameObject.Find("MusicManager(Clone)");
             Destroy(sound);
         }
@@ -33,18 +33,11 @@ public class Weapon : MonoBehaviour {
 
     void TransformTile()
     {
-        Vector3 localPosition = gameObject.transform.position;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 clickPosition = new Vector3(ray.origin.x, ray.origin.y, 0f);
-        Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 10f);
-
         Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background"));
-
-        //RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 10f, LayerMask.GetMask("Foreground", "Background"));
         if (hit)
         {
             Collider2D hitbox = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
-            if (lastTile == null && hitbox == null)
+            if (lastTile == null )
             {
                 lastTile = hit.transform.gameObject.GetComponent<TransformableTile>();
                 if(lastTile)
@@ -73,6 +66,12 @@ public class Weapon : MonoBehaviour {
             else if (hit.gameObject.layer == LayerMask.NameToLayer("Background") && !hitbox)
             {
                 if (lastTile == hit.transform.gameObject.GetComponent<TransformableTile>())
+                {
+                    lastTile.originalState();
+                    lastTile = null;
+
+                }
+                else if (hit.transform.gameObject.GetComponent<TransformableTile>() == null)
                 {
                     lastTile.originalState();
                     lastTile = null;

@@ -79,10 +79,4 @@ public class WeaponCursor : MonoBehaviour {
     {
         yPressed = false;
     }
-
-    private void paintSprite()
-    {
-
-    }
-
 }

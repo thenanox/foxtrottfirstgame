@@ -14,7 +14,7 @@ public class EndLevel : MonoBehaviour {
             {
                 GameObject sound = GameObject.Find("MusicManager(Clone)");
                 Destroy(sound);
-                SceneManager.LoadScene("Standard assets/Scenes/MenuPrincipalEnd");
+                SceneManager.LoadScene("Levels/MenuPrincipalEnd");
             }
             else SceneManager.LoadScene("Levels/Level" + numberLevel);
         }

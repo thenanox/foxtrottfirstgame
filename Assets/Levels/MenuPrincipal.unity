@@ -658,8 +658,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Help Jimmy to get out from Foxtrott Prison. \nHe stole a matter manipulator...Use
-    it wisely."
+  m_Text: "Help Jimmy to get out from Foxtrott Prison. \nHe stole an ancient matter
+    manipulator...Use it wisely."
 --- !u!222 &953945091
 CanvasRenderer:
   m_ObjectHideFlags: 0
