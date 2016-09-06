@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour {
     public AudioSource source;
     public AudioClip hurt;
 
+    private bool alive = true;
+
     // Use this for initialization
     void Awake () {
         source = GetComponent<AudioSource>();
@@ -14,12 +16,19 @@ public class PlayerHealth : MonoBehaviour {
     
     public void Kill()
     {
-        source.PlayOneShot(hurt);
-
+        source.PlayOneShot(hurt, 0.4f);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        source.PlayOneShot(hurt);
-
+        gameObject.GetComponent<MovementController>().enabled = false;
+        gameObject.GetComponent<WeaponCursor>().enabled = false;
+        gameObject.GetComponent<Weapon>().enabled = false;
+        alive = false;
+        Destroy(GameObject.Find("cursor(Clone)"));
         Invoke("reloadScene", 2.0f);
+    }
+
+    public bool IsAlive()
+    {
+        return alive;
     }
 
     void reloadScene()

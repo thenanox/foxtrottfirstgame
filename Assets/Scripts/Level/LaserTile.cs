@@ -16,7 +16,8 @@ public class LaserTile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player") {
-            coll.gameObject.GetComponent<PlayerHealth>().Kill();
+            PlayerHealth pl = coll.gameObject.GetComponent<PlayerHealth>();
+            if (pl.IsAlive()) { pl.Kill(); }
         }
     }
 }
