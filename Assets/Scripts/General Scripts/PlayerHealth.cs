@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour {
         gameObject.GetComponent<WeaponCursor>().enabled = false;
         gameObject.GetComponent<Weapon>().enabled = false;
         alive = false;
-        Destroy(GameObject.Find("cursor(Clone)"));
         Invoke("reloadScene", 2.0f);
     }
 
