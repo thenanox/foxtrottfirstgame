@@ -20,22 +20,22 @@ public class BoardScript : MonoBehaviour {
     void FillForeground()
     {
         Instantiate(WallCorner, new Vector2(startColumnsOffset, startFilesOffset), transform.rotation, transform);
-        for (int i = startColumnsOffset; i < endColumnsOffset; i++)
+        for (int i = startColumnsOffset + 1; i < endColumnsOffset; i++)
         {
             Instantiate(Wall, new Vector2(i, startFilesOffset), transform.rotation, transform);
         }
         Instantiate(WallCorner, new Vector2(endColumnsOffset, startFilesOffset), Quaternion.Euler(0f,0f,90f), transform);
-        for (int i = startFilesOffset; i < endFilesOffset; i++)
+        for (int i = startFilesOffset + 1; i < endFilesOffset; i++)
         {
             Instantiate(Wall, new Vector2(endColumnsOffset, i), Quaternion.Euler(0f, 0f, 90f), transform);
         }
         Instantiate(WallCorner, new Vector2(endColumnsOffset, endFilesOffset), Quaternion.Euler(0f, 0f, 180f), transform);
-        for (int i = endColumnsOffset; i > startColumnsOffset; i--)
+        for (int i = endColumnsOffset - 1; i > startColumnsOffset; i--)
         {
             Instantiate(Wall, new Vector2(i, endFilesOffset), Quaternion.Euler(0f, 0f, 180f), transform);
         }
         Instantiate(WallCorner, new Vector2(startColumnsOffset, endFilesOffset), Quaternion.Euler(0f, 0f, 270f), transform);
-        for (int i = endFilesOffset; i > startFilesOffset; i--)
+        for (int i = endFilesOffset - 1; i > startFilesOffset; i--)
         {
             Instantiate(Wall, new Vector2(startColumnsOffset, i), Quaternion.Euler(0f, 0f, 270f), transform);
         }

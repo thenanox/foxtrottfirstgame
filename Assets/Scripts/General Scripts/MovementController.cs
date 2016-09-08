@@ -53,7 +53,7 @@ public class MovementController : MonoBehaviour
     void Start()
     {
         InputManager.Instance.registerAxis("Horizontal", OnInputXAxis);
-        InputManager.Instance.RegisterKeyDown("jump", OnJumpPressed);
+        InputManager.Instance.RegisterKeyDown("Jump", OnJumpPressed);
 
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -156,8 +156,6 @@ public class MovementController : MonoBehaviour
             _isTouchingGround = false;
             animator.SetTrigger("jump");
         }
-        
-
     }
 
     public Vector3 getVelocity()

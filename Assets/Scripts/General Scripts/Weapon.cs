@@ -10,25 +10,18 @@ public class Weapon : MonoBehaviour {
     public AudioSource audiosource;
     public AudioClip wrongSound;
 
+    private bool activated = false;
+
     void Start()
     {
         cursor = GetComponent<WeaponCursor>().cursor;
         audiosource = GetComponent<AudioSource>();
+        InputManager.Instance.RegisterKeyDown("Exit", Exit);
+        InputManager.Instance.registerAxis("Activate", Activate);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Levels/MenuPrincipal");
-            GameObject sound = GameObject.Find("MusicManager(Clone)");
-            Destroy(sound);
-        }
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            TransformTile();
-        }
-
         updateCursor();
     }
 
@@ -36,6 +29,10 @@ public class Weapon : MonoBehaviour {
     {
         Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background"));
         Collider2D hitbox = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
+        if(hit == null)
+        {
+            return;
+        }
         TransformableTile transTile = hit.transform.gameObject.GetComponent<TransformableTile>();
         if (hit && hitbox == null && transTile != null)
         {
@@ -61,12 +58,25 @@ public class Weapon : MonoBehaviour {
                 else
                 {
                     audiosource.PlayOneShot(wrongSound);
+                    ParticleSystem parti = hitLastileBox.gameObject.GetComponent<ParticleSystem>();
+                    if(parti != null)
+                    {
+                        parti.Play();
+                    }
                 }
             }
         }
         else
         {
             audiosource.PlayOneShot(wrongSound);
+            if (hitbox)
+            {
+                ParticleSystem parti = hitbox.gameObject.GetComponent<ParticleSystem>();
+                if (parti != null)
+                {
+                    parti.Play();
+                }
+            }
         }
     }
 
@@ -97,6 +107,25 @@ public class Weapon : MonoBehaviour {
             {
                 cursor.transform.Translate(Vector3.down);
             }
+        }
+    }
+    
+    void Exit(string key)
+    {
+        SceneManager.LoadScene("Levels/MenuPrincipal");
+        GameObject sound = GameObject.Find("MusicManager(Clone)");
+        Destroy(sound);
+    }
+
+    void Activate(string axe, float value)
+    {
+        if(value < -0.4f && !activated)
+        {
+            activated = true;
+            TransformTile();
+        } else if(value > -0.4f)
+        {
+            activated = false;
         }
     }
 }

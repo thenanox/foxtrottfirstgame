@@ -6,13 +6,13 @@ using System.Linq;
 public class InputManager : SingletonComponent<InputManager>
 {
     public delegate void KeyEvent(string K);
-    public delegate void JoystikEvent(string axe, float value);
+    public delegate void JoystickEvent(string axe, float value);
 
     private List<string> keys;
     private List<string> axis;
     private Dictionary<string, KeyEvent> keyDownEvents, keyUpEvents;
-    private Dictionary<string, JoystikEvent> axisEvents;
-    private event JoystikEvent keyEventHandler;
+    private Dictionary<string, JoystickEvent> axisEvents;
+    private event JoystickEvent keyEventHandler;
 
     bool isInputEnable = true;
 
@@ -25,7 +25,7 @@ public class InputManager : SingletonComponent<InputManager>
     {
         keyDownEvents = new Dictionary<string, KeyEvent>();
         keyUpEvents = new Dictionary<string, KeyEvent>();
-        axisEvents = new Dictionary<string, JoystikEvent>();
+        axisEvents = new Dictionary<string, JoystickEvent>();
         keys = new List<string>();
         axis = new List<string>();
     }
@@ -94,7 +94,7 @@ public class InputManager : SingletonComponent<InputManager>
         if (removeKey) RemoveKey(K);
     }
 
-    public void registerAxis(string axe, JoystikEvent kEvent)
+    public void registerAxis(string axe, JoystickEvent kEvent)
     {
 
         if (axisEvents.ContainsKey(axe))
@@ -106,7 +106,7 @@ public class InputManager : SingletonComponent<InputManager>
         }
     }
 
-    public void unRegisterAxis(string axe, JoystikEvent kEvent, bool removeKey)
+    public void unRegisterAxis(string axe, JoystickEvent kEvent, bool removeKey)
     {
         if (axisEvents.ContainsKey(axe))
         {
@@ -150,7 +150,7 @@ public class InputManager : SingletonComponent<InputManager>
 
     private void OnAxis(string axe, float value)
     {
-        JoystikEvent E = null;
+        JoystickEvent E = null;
         if (axisEvents.TryGetValue(axe, out E))
             if (E != null)
                 E(axe, value);

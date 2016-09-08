@@ -23,8 +23,8 @@ GameObject:
   - 61: {fileID: 61000011990645308}
   - 114: {fileID: 114000010849667394}
   - 95: {fileID: 95000013394359490}
-  m_Layer: 10
-  m_Name: WallBackground
+  m_Layer: 8
+  m_Name: WallFrontground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

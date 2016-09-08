@@ -3,10 +3,11 @@ using System.Collections;
 
 public class WeaponCursor : MonoBehaviour {
 
-    private bool xPressed = false;
-    private bool yPressed = false;
+    private float accX = 0.0f;
+    private float accY = 0.0f;
 
-    public float maxDistance = 5.0f;
+    public float maxDistance = 4.0f;
+    public float cursorSensitivity = 9.0f;
 
     public GameObject cursor;
 
@@ -18,7 +19,7 @@ public class WeaponCursor : MonoBehaviour {
         }
     }
 
-    void Awake()
+    void Awake() 
     {
         cursor = GameObject.Instantiate(cursor);
     }
@@ -28,55 +29,62 @@ public class WeaponCursor : MonoBehaviour {
         InputManager.Instance.registerAxis("MoveCursorX", OnCursorX);
         InputManager.Instance.registerAxis("MoveCursorY", OnCursorY);
 
-        InputManager.Instance.RegisterKeyUp("MoveCursorX", releaseX);
-        InputManager.Instance.RegisterKeyUp("MoveCursorY", releaseY);
-
         cursor.transform.position = new Vector3(Mathf.Round(transform.position.x) + 1, Mathf.Round(transform.position.y), 0);
     }
 
     public void OnCursorX(string key, float value)
     {
-        if (!xPressed && value != 0f)
+        if (value != 0f)
         {
             float cursorDistance = cursor.transform.position.x - Mathf.Round(transform.position.x);
-
-            xPressed = true;
-            if(value > 0 && (cursorDistance) < maxDistance)
+            if(value < 0 && accX > 0 || value > 0 && accX < 0)
+            {
+                accX = value;
+            }
+            else
+            {
+                accX += value;
+            } 
+            if(accX > cursorSensitivity && (cursorDistance) < maxDistance)
             {
                 cursor.transform.position += new Vector3(1.0f, 0f, 0f);
+                accX = 0;
+                accY = 0;
             }
-            else if (value < 0 && (cursorDistance) > -maxDistance && cursor.transform.position.x > 0)
+            else if (accX < -cursorSensitivity && (cursorDistance) > -maxDistance && cursor.transform.position.x > 0)
             {
                 cursor.transform.position -= new Vector3(1.0f, 0f, 0f);
+                accX = 0;
+                accY = 0;
             }
         }
     }
 
     public void OnCursorY(string key, float value)
     {
-        if (!yPressed && value != 0f)
+        if (value != 0f)
         {
             float cursorDistance = cursor.transform.position.y - Mathf.Round(transform.position.y);
-
-            yPressed = true;
-            if (value > 0 && (cursorDistance) < maxDistance)
+            if (value < 0 && accY > 0 || value > 0 && accY < 0)
+            {
+                accY = value;
+            }
+            else
+            {
+                accY += value;
+            }
+            if (accY > cursorSensitivity && (cursorDistance) < maxDistance)
             {
                 cursor.transform.position += new Vector3(0f, 1.0f, 0f);
+                accX = 0;
+                accY = 0;
             }
-            else if (value < 0 && (cursorDistance) > -maxDistance && cursor.transform.position.y > 0)
+            else if (accY < -cursorSensitivity && (cursorDistance) > -maxDistance && cursor.transform.position.y > 0)
             {
                 cursor.transform.position -= new Vector3(0f, 1.0f, 0f);
+                accX = 0;
+                accY = 0;
             }
         }
-    }
-
-    public void releaseX(string key)
-    {
-        xPressed = false;
-    }
-
-    public void releaseY(string key)
-    {
-        yPressed = false;
     }
 }

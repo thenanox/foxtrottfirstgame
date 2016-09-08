@@ -5,7 +5,6 @@ public class AudioManager : SingletonComponent<AudioManager>
 {
     private AudioSource source;
     private GameObject sound;
-
     public GameObject gameSoundManager;
 
     void Awake()
@@ -13,11 +12,10 @@ public class AudioManager : SingletonComponent<AudioManager>
         source = GetComponent<AudioSource>();
     }
 
-    public void startGame()
+    public void StartGame()
     {
-        sound = GameObject.Instantiate(gameSoundManager);
+        sound = Instantiate(gameSoundManager);
         source.Stop();
-
         DontDestroyOnLoad(sound);
     }
 
