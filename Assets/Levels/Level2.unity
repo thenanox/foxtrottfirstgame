@@ -1008,7 +1008,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010774375100, guid: c136a4b7df63feb4fb475d244d17ab8a, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4000010774375100, guid: c136a4b7df63feb4fb475d244d17ab8a, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2019,7 +2019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010450934110, guid: a45985f4fdcf3694c95ba4600f4171dc, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 61000013131566040, guid: a45985f4fdcf3694c95ba4600f4171dc,
         type: 2}
@@ -3453,7 +3453,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012478489434, guid: 4b5bad5f6fddbe24d995d31b348d14ed, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000013100292608, guid: 4b5bad5f6fddbe24d995d31b348d14ed,
         type: 2}
@@ -4361,7 +4361,7 @@ Transform:
   - {fileID: 631101453}
   - {fileID: 594306981}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &687098768 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011011722222, guid: 387988fc4762dbf469145a1b655d6bc4,
@@ -6138,7 +6138,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010774375100, guid: c136a4b7df63feb4fb475d244d17ab8a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4000010774375100, guid: c136a4b7df63feb4fb475d244d17ab8a, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -7234,7 +7234,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &1351431560 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012370693960, guid: 7918fa0f21b42e74ba6be64b3a722404,

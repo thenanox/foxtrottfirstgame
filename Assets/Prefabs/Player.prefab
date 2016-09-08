@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 4
-  cursorSensitivity: 9
+  cursorSensitivity: 11
   cursor: {fileID: 1000012920602160, guid: 37591e63dd4d0624cbb44c1939f65a6c, type: 2}
 --- !u!114 &114000010604042776
 MonoBehaviour:
