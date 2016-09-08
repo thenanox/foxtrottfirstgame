@@ -27,8 +27,8 @@ public class Weapon : MonoBehaviour {
 
     void TransformTile()
     {
-        Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Foreground", "Background"));
-        Collider2D hitbox = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
+        Collider2D hit = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(.9f, .9f), 0.0f, LayerMask.GetMask("Foreground", "Background"));
+        Collider2D hitbox = Physics2D.OverlapBox(new Vector2(cursor.transform.position.x, cursor.transform.position.y), new Vector2(.9f, .9f), 0.0f, LayerMask.GetMask("Box", "Players"));
         if(hit == null)
         {
             return;
@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour {
             }
             else
             {
-                Collider2D hitLastileBox = Physics2D.OverlapBox(new Vector2(lastTile.transform.position.x, lastTile.transform.position.y), new Vector2(0.5f, 0.5f), 0.0f, LayerMask.GetMask("Box", "Players"));
+                Collider2D hitLastileBox = Physics2D.OverlapBox(new Vector2(lastTile.transform.position.x, lastTile.transform.position.y), new Vector2(.9f, .9f), 0.0f, LayerMask.GetMask("Box", "Players"));
                 if (hitLastileBox == null)
                 {
                     lastTile.originalState();

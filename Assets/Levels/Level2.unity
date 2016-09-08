@@ -2024,7 +2024,7 @@ Prefab:
     - target: {fileID: 61000013131566040, guid: a45985f4fdcf3694c95ba4600f4171dc,
         type: 2}
       propertyPath: m_Size.y
-      value: 0.8
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 82000010897822096, guid: a45985f4fdcf3694c95ba4600f4171dc,
         type: 2}

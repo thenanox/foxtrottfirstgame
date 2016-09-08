@@ -77,9 +77,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.089401245, y: -0.008514881}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.41250992, y: 0.8}
+  m_Size: {x: 0.5, y: 0.85}
 --- !u!82 &82000010897822096
 AudioSource:
   m_ObjectHideFlags: 1
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 4
+  cursorSensitivity: 9
   cursor: {fileID: 1000012920602160, guid: 37591e63dd4d0624cbb44c1939f65a6c, type: 2}
 --- !u!114 &114000010604042776
 MonoBehaviour:
