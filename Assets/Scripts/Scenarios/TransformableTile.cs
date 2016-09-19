@@ -4,18 +4,17 @@ using System.Collections;
 public class TransformableTile : BaseTile {
 
     private bool backgroundBorn = false;
-    private bool transformed = false;
-    public Animator animator;
-
-
+    private Sprite originalSprite;
+    private LevelManager levelManager;
+    
 	// Use this for initialization
 	void Start () {
 	    if(gameObject.layer == LayerMask.NameToLayer("Background"))
         {
-            GetComponent<SpriteRenderer>().material.color = Color.grey;
             backgroundBorn = true;
         }
-        animator = GetComponent<Animator>();
+        originalSprite = GetComponent<SpriteRenderer>().sprite;
+        levelManager = gameObject.GetComponentInParent<LevelManager>();
     }
 
     public void originalState()
@@ -23,14 +22,13 @@ public class TransformableTile : BaseTile {
         if (backgroundBorn)
         {
             gameObject.layer = LayerMask.NameToLayer("Background");
-            GetComponent<SpriteRenderer>().material.color = Color.grey;
-            animator.SetTrigger("Unshake");
+            levelManager.TransformTile(gameObject, '1');
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Walls/00");
         }
         else
         {
             gameObject.layer = LayerMask.NameToLayer("Foreground");
-            GetComponent<SpriteRenderer>().material.color = Color.white;
-            animator.SetTrigger("Unshake");
+            levelManager.TransformTile(gameObject, '0');
         }
     }
 
@@ -39,14 +37,13 @@ public class TransformableTile : BaseTile {
         if(gameObject.layer == LayerMask.NameToLayer("Background"))
         {
             gameObject.layer = LayerMask.NameToLayer("Foreground");
-            GetComponent<SpriteRenderer>().material.color = Color.white;
-            animator.SetTrigger("Shake");
+            levelManager.TransformTile(gameObject, '0');
         }
         else
         {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Walls/00");
             gameObject.layer = LayerMask.NameToLayer("Background");
-            GetComponent<SpriteRenderer>().material.color = Color.grey;
-            animator.SetTrigger("Shake");
+            levelManager.TransformTile(gameObject, '1');
         }
     }
 }
