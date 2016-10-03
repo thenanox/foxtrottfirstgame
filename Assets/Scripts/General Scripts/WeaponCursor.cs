@@ -21,7 +21,8 @@ public class WeaponCursor : MonoBehaviour {
 
     void Awake() 
     {
-        cursor = GameObject.Instantiate(cursor);
+        Transform tr = GetComponentInParent<LevelTheatre>().gameObject.transform;
+        cursor = (GameObject)Instantiate(cursor, tr);
     }
 
 	void Start()

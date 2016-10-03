@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class LE_Input : MonoBehaviour {
+public class LevelEditor : MonoBehaviour {
 
     private Vector2 _cursorPosition = new Vector2(0.0f, 0.0f);
 
-    private LevelMgr _levelManager;
+    private LevelManager _levelManager;
     public List<GameObject> Prefabs = new List<GameObject>();
+    public Elements elements;
     public GameObject SelectedPrefab;
     private bool _mousePressed = false;
 
@@ -16,18 +17,23 @@ public class LE_Input : MonoBehaviour {
     private int _selectedPartNumber = 0;
 
     void Start () {
+        elements = gameObject.GetComponent<Elements>();
+        Prefabs.Add(elements.backgroundPrefab);
+        Prefabs.Add(elements.foregroundPrefab);
+        Prefabs.Add(elements.playerPrefab);
+        Prefabs.Add(elements.exitDoorPrefab);
         SelectedPrefab = Prefabs[_selectedPartNumber];
-        _levelManager = GetComponent<LevelMgr>();
+        _levelManager = GetComponent<LevelManager>();
     }
 	
 	void Update () {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 tileSelected = new Vector2(Mathf.Round(mousePosition.x), Mathf.Round(mousePosition.y));
-        if(tileSelected.x >= 0 && tileSelected.x <= 40 && tileSelected.y >= 0 && tileSelected.y <= 17)
+        if(tileSelected.x >= 1 && tileSelected.x <= 39 && tileSelected.y >= 1 && tileSelected.y <= 16)
         {
             if (_mousePressed)
             {
-                _levelManager.AddPart(SelectedPrefab, _cursorPosition, false);
+                _levelManager.AddPart(SelectedPrefab, _cursorPosition);
             }
             if (Input.GetKey(KeyCode.F5))
             {
@@ -39,7 +45,7 @@ public class LE_Input : MonoBehaviour {
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                _levelManager.AddPart(SelectedPrefab, _cursorPosition, false);
+                _levelManager.AddPart(SelectedPrefab, _cursorPosition);
                 _mousePressed = true;
             }
             if (Input.GetButtonUp("Fire1"))

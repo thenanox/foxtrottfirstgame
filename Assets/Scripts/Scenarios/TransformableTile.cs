@@ -3,31 +3,31 @@ using System.Collections;
 
 public class TransformableTile : BaseTile {
 
-    private bool backgroundBorn = false;
+    private int state = 0;
     private Sprite originalSprite;
-    private LevelLoader levelLoader;
+    public LevelTheatre lt;
     
 	void Start () {
 	    if(gameObject.layer == LayerMask.NameToLayer("Background"))
         {
-            backgroundBorn = true;
+            state = 1;
         }
         originalSprite = GetComponent<SpriteRenderer>().sprite;
-        levelLoader = gameObject.GetComponentInParent<LevelLoader>();
+        lt = GetComponentInParent<LevelTheatre>();
     }
 
     public void originalState()
     {
-        if (backgroundBorn)
+        if (state == 1)
         {
             gameObject.layer = LayerMask.NameToLayer("Background");
-            levelLoader.TransformTile(gameObject, '1');
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Walls/00");
+            lt.Transformer(gameObject, '1');
         }
         else
         {
             gameObject.layer = LayerMask.NameToLayer("Foreground");
-            levelLoader.TransformTile(gameObject, '0');
+            lt.Transformer(gameObject, '0');
         }
     }
 
@@ -36,13 +36,13 @@ public class TransformableTile : BaseTile {
         if(gameObject.layer == LayerMask.NameToLayer("Background"))
         {
             gameObject.layer = LayerMask.NameToLayer("Foreground");
-            levelLoader.TransformTile(gameObject, '0');
+            lt.Transformer(gameObject, '0');
         }
         else
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Walls/00");
             gameObject.layer = LayerMask.NameToLayer("Background");
-            levelLoader.TransformTile(gameObject, '1');
+            lt.Transformer(gameObject, '1');
         }
     }
 }

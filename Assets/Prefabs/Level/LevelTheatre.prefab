@@ -9,58 +9,67 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012239116504}
+  m_RootGameObject: {fileID: 1000012524038514}
   m_IsPrefabParent: 1
---- !u!1 &1000012239116504
+--- !u!1 &1000012524038514
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013213691400}
-  - 114: {fileID: 114000013475828484}
-  - 114: {fileID: 114000010650937638}
+  - 4: {fileID: 4000013798267414}
+  - 114: {fileID: 114000012788637004}
+  - 114: {fileID: 114000013454700140}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: LevelTheatre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000013213691400
+--- !u!4 &4000013798267414
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012239116504}
+  m_GameObject: {fileID: 1000012524038514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.738265, y: 3.3325055, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000010650937638
+--- !u!114 &114000012788637004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012239116504}
+  m_GameObject: {fileID: 1000012524038514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c56d8718418a4e49b5dbe5afa3d5a7b, type: 3}
+  m_Script: {fileID: 11500000, guid: b02d0a205fd5e494980cfcabbd866207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
---- !u!114 &114000013475828484
+  level: 1
+  elements: {fileID: 114000013454700140}
+--- !u!114 &114000013454700140
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012239116504}
+  m_GameObject: {fileID: 1000012524038514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83becb09878cbcd4c9adad2fc702a710, type: 3}
+  m_Script: {fileID: 11500000, guid: a7cf14e4104fe4c4ab24a8a0fa147e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundPrefab: {fileID: 1000010092353340, guid: 0d46ba6fde21e374dad2a9271361910d,
+    type: 2}
+  foregroundPrefab: {fileID: 1000012603264242, guid: 09a082786b42d464aa947b2157ca89f4,
+    type: 2}
+  exitDoorPrefab: {fileID: 1000013780878282, guid: 4b5bad5f6fddbe24d995d31b348d14ed,
+    type: 2}
+  playerPrefab: {fileID: 1000013361944486, guid: a45985f4fdcf3694c95ba4600f4171dc,
+    type: 2}

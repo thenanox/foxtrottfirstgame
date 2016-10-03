@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012914688364}
+  m_RootGameObject: {fileID: 1000012239116504}
   m_IsPrefabParent: 1
---- !u!1 &1000012914688364
+--- !u!1 &1000012239116504
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013327546794}
-  - 114: {fileID: 114000010329602764}
+  - 4: {fileID: 4000013213691400}
+  - 114: {fileID: 114000013475828484}
   m_Layer: 0
-  m_Name: LevelGenerator
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000013327546794
+--- !u!4 &4000013213691400
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012914688364}
+  m_GameObject: {fileID: 1000012239116504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,22 +40,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000010329602764
+--- !u!114 &114000013475828484
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012914688364}
+  m_GameObject: {fileID: 1000012239116504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a352e63b367e5524398ca39afb199533, type: 3}
+  m_Script: {fileID: 11500000, guid: 83becb09878cbcd4c9adad2fc702a710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WallBackground: {fileID: 1000010336082048, guid: 387988fc4762dbf469145a1b655d6bc4,
-    type: 2}
-  WallCorner: {fileID: 1000011367736582, guid: be81663f66a4db24b94e1bc3d6e9b421, type: 2}
-  Wall: {fileID: 1000013432893554, guid: 7918fa0f21b42e74ba6be64b3a722404, type: 2}
-  startFilesOffset: 0
-  endFilesOffset: 17
-  startColumnsOffset: 0
-  endColumnsOffset: 30
