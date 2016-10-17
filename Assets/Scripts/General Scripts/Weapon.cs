@@ -20,6 +20,13 @@ public class Weapon : MonoBehaviour {
         InputManager.Instance.registerAxis("Activate", Activate);
     }
 
+    void OnDestroy()
+    {
+        InputManager.Instance.UnregisterKeyDown("Exit", Exit, true);
+        InputManager.Instance.unRegisterAxis("Activate", Activate, true);
+        Destroy(cursor);
+    }
+
     void Update()
     {
         updateCursor();

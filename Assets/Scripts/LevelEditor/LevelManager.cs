@@ -115,6 +115,31 @@ public class LevelManager : MonoBehaviour
             levelElements.Add((GameObject)GameObject.Instantiate(elements.exitDoorPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
             levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.backgroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
+        else if (part == elements.laserPrefab1)
+        {
+            currentLevel.tiles[currentPosition] = '3';
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab1, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+        }
+        else if (part == elements.laserPrefab2)
+        {
+            currentLevel.tiles[currentPosition] = '4';
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab2, location, Quaternion.Euler(new Vector3(0, 0, 90)), GameObject.Find("LevelEditor").transform));
+        }
+        else if (part == elements.laserPrefab3)
+        {
+            currentLevel.tiles[currentPosition] = '5';
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab3, location, Quaternion.Euler(new Vector3(0, 0, 180)), GameObject.Find("LevelEditor").transform));
+        }
+        else if (part == elements.laserPrefab4)
+        {
+            currentLevel.tiles[currentPosition] = '6';
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab4, location, Quaternion.Euler(new Vector3(0, 0, 270)), GameObject.Find("LevelEditor").transform));
+        }
+        else if (part == elements.boxPrefab)
+        {
+            currentLevel.tiles[currentPosition] = 'B';
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.boxPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+        }
         else if (part == elements.backgroundPrefab)
         {
             currentLevel.tiles[currentPosition] = '1';
@@ -147,8 +172,26 @@ public class LevelManager : MonoBehaviour
 
         currentLevel = (Level)formatter.Deserialize(saveFile);
         saveFile.Close();
+        if (levelMatrix != null)
+        {
+            foreach (GameObject go in levelMatrix)
+            {
+                Destroy(go);
+            }
+            levelMatrix.Clear();
+        }
+        if (levelElements != null)
+        {
+            foreach (GameObject go in levelElements)
+            {
+                Destroy(go);
+            }
+            levelElements.Clear();
+        }
         levelMatrix = new List<GameObject>();
+        levelElements = new List<GameObject>();
         Build();
+        Transform();
     }
 
     public void Transform()
@@ -169,7 +212,7 @@ public class LevelManager : MonoBehaviour
         if (currentLevel.tiles[tileSelected] == '0')
         {
             char[] tiles = new char[8];
-            if (currentLevel.tiles[tileSelected + 41] == '1' || currentLevel.tiles[tileSelected + 41] == 'P' || currentLevel.tiles[tileSelected + 41] == 'E')
+            if (currentLevel.tiles[tileSelected + 41] != '0')
             {
                 tiles[0] = '1';
                 tiles[1] = '1';
@@ -181,7 +224,7 @@ public class LevelManager : MonoBehaviour
                 tiles[1] = currentLevel.tiles[tileSelected + 41];
                 tiles[2] = currentLevel.tiles[tileSelected + 41 + 1];
             }
-            if (currentLevel.tiles[tileSelected - 1] == '1' || currentLevel.tiles[tileSelected - 1] == 'P' || currentLevel.tiles[tileSelected - 1] == 'E')
+            if (currentLevel.tiles[tileSelected - 1] != '0')
             {
                 tiles[0] = '1';
                 tiles[3] = '1';
@@ -192,7 +235,7 @@ public class LevelManager : MonoBehaviour
                 tiles[3] = currentLevel.tiles[tileSelected - 1];
                 tiles[5] = currentLevel.tiles[tileSelected - 41 - 1];
             }
-            if (currentLevel.tiles[tileSelected + 1] == '1' || currentLevel.tiles[tileSelected + 1] == 'P' || currentLevel.tiles[tileSelected + 1] == 'E')
+            if (currentLevel.tiles[tileSelected + 1] != '0')
             {
                 tiles[2] = '1';
                 tiles[4] = '1';
@@ -203,7 +246,7 @@ public class LevelManager : MonoBehaviour
                 tiles[4] = currentLevel.tiles[tileSelected + 1];
                 tiles[7] = currentLevel.tiles[tileSelected - 41 + 1];
             }
-            if (currentLevel.tiles[tileSelected - 41] == '1' || currentLevel.tiles[tileSelected - 41] == 'P' || currentLevel.tiles[tileSelected - 41] == 'E')
+            if (currentLevel.tiles[tileSelected - 41] != '0')
             {
                 tiles[5] = '1';
                 tiles[6] = '1';

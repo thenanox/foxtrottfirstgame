@@ -73,3 +73,5 @@ MonoBehaviour:
     type: 2}
   playerPrefab: {fileID: 1000013361944486, guid: a45985f4fdcf3694c95ba4600f4171dc,
     type: 2}
+  cursorPrefab: {fileID: 1000012920602160, guid: 37591e63dd4d0624cbb44c1939f65a6c,
+    type: 2}

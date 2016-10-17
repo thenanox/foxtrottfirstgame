@@ -22,6 +22,11 @@ public class LevelEditor : MonoBehaviour {
         Prefabs.Add(elements.foregroundPrefab);
         Prefabs.Add(elements.playerPrefab);
         Prefabs.Add(elements.exitDoorPrefab);
+        Prefabs.Add(elements.laserPrefab1);
+        Prefabs.Add(elements.laserPrefab2);
+        Prefabs.Add(elements.laserPrefab3);
+        Prefabs.Add(elements.laserPrefab4);
+        Prefabs.Add(elements.boxPrefab);
         SelectedPrefab = Prefabs[_selectedPartNumber];
         _levelManager = GetComponent<LevelManager>();
     }

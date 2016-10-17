@@ -132,7 +132,7 @@ public class LevelTheatre : MonoBehaviour
         if (currentLevel.tiles[tileSelected] == '0')
         {
             char[] tiles = new char[8];
-            if (currentLevel.tiles[tileSelected + 41] == '1' || currentLevel.tiles[tileSelected + 41] == 'P' || currentLevel.tiles[tileSelected + 41] == 'E')
+            if (currentLevel.tiles[tileSelected + 41] != '0')
             {
                 tiles[0] = '1';
                 tiles[1] = '1';
@@ -144,7 +144,7 @@ public class LevelTheatre : MonoBehaviour
                 tiles[1] = currentLevel.tiles[tileSelected + 41];
                 tiles[2] = currentLevel.tiles[tileSelected + 41 + 1];
             }
-            if (currentLevel.tiles[tileSelected - 1] == '1' || currentLevel.tiles[tileSelected - 1] == 'P' || currentLevel.tiles[tileSelected - 1] == 'E')
+            if (currentLevel.tiles[tileSelected - 1] != '0')
             {
                 tiles[0] = '1';
                 tiles[3] = '1';
@@ -155,7 +155,7 @@ public class LevelTheatre : MonoBehaviour
                 tiles[3] = currentLevel.tiles[tileSelected - 1];
                 tiles[5] = currentLevel.tiles[tileSelected - 41 - 1];
             }
-            if (currentLevel.tiles[tileSelected + 1] == '1' || currentLevel.tiles[tileSelected + 1] == 'P' || currentLevel.tiles[tileSelected + 1] == 'E')
+            if (currentLevel.tiles[tileSelected + 1] != '0')
             {
                 tiles[2] = '1';
                 tiles[4] = '1';
@@ -166,7 +166,7 @@ public class LevelTheatre : MonoBehaviour
                 tiles[4] = currentLevel.tiles[tileSelected + 1];
                 tiles[7] = currentLevel.tiles[tileSelected - 41 + 1];
             }
-            if (currentLevel.tiles[tileSelected - 41] == '1' || currentLevel.tiles[tileSelected - 41] == 'P' || currentLevel.tiles[tileSelected - 41] == 'E')
+            if (currentLevel.tiles[tileSelected - 41] != '0')
             {
                 tiles[5] = '1';
                 tiles[6] = '1';

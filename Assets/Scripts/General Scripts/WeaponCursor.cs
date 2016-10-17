@@ -33,6 +33,13 @@ public class WeaponCursor : MonoBehaviour {
         cursor.transform.position = new Vector3(Mathf.Round(transform.position.x) + 1, Mathf.Round(transform.position.y), 0);
     }
 
+    void OnDestroy()
+    {
+        InputManager.Instance.unRegisterAxis("MoveCursorX", OnCursorX, true);
+        InputManager.Instance.unRegisterAxis("MoveCursorY", OnCursorY, true);
+        Destroy(cursor);
+    }
+
     public void OnCursorX(string key, float value)
     {
         if (value != 0f)

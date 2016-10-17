@@ -10,4 +10,9 @@ public class Elements : MonoBehaviour
     public GameObject foregroundPrefab;
     public GameObject exitDoorPrefab;
     public GameObject playerPrefab;
+    public GameObject laserPrefab1;
+    public GameObject laserPrefab2;
+    public GameObject laserPrefab3;
+    public GameObject laserPrefab4;
+    public GameObject boxPrefab;
 }
