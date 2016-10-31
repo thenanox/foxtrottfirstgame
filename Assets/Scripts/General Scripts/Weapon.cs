@@ -17,13 +17,18 @@ public class Weapon : MonoBehaviour {
         cursor = GetComponent<WeaponCursor>().cursor;
         audiosource = GetComponent<AudioSource>();
         InputManager.Instance.RegisterKeyDown("Exit", Exit);
-        InputManager.Instance.registerAxis("Activate", Activate);
+        InputManager.Instance.RegisterAxis("Activate", Activate);
+    }
+
+    public void Disable()
+    {
+        InputManager.Instance.UnregisterKeyDown("Exit", Exit, true);
+        InputManager.Instance.UnregisterAxis("Activate", Activate, true);
     }
 
     void OnDestroy()
     {
-        InputManager.Instance.UnregisterKeyDown("Exit", Exit, true);
-        InputManager.Instance.unRegisterAxis("Activate", Activate, true);
+        Disable();
         Destroy(cursor);
     }
 
@@ -126,11 +131,11 @@ public class Weapon : MonoBehaviour {
 
     void Activate(string axe, float value)
     {
-        if(value < -0.4f && !activated)
+        if(value > 0.4f && !activated)
         {
             activated = true;
             TransformTile();
-        } else if(value > -0.4f)
+        } else if(value < 0.4f)
         {
             activated = false;
         }

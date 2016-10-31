@@ -38,7 +38,7 @@ GameObject:
   - 114: {fileID: 114000011713767568}
   - 61: {fileID: 61000011030537232}
   m_Layer: 11
-  m_Name: LaserPoint
+  m_Name: LaserPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

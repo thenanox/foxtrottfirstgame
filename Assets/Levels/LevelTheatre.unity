@@ -177,48 +177,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1001 &1049916591
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013213691400, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3a7dbf2b04ed77942a696fbf67da80e4, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1919915132
 Prefab:
   m_ObjectHideFlags: 0
@@ -257,6 +215,11 @@ Prefab:
     - target: {fileID: 4000013798267414, guid: 72dc026d56a7249478cb32db0024d4f9, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012788637004, guid: 72dc026d56a7249478cb32db0024d4f9,
+        type: 2}
+      propertyPath: level
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72dc026d56a7249478cb32db0024d4f9, type: 2}

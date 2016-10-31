@@ -52,7 +52,7 @@ public class MovementController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InputManager.Instance.registerAxis("Horizontal", OnInputXAxis);
+        InputManager.Instance.RegisterAxis("Horizontal", OnInputXAxis);
         InputManager.Instance.RegisterKeyDown("Jump", OnJumpPressed);
 
         audioSource = GetComponent<AudioSource>();

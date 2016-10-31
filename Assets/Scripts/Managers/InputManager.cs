@@ -94,7 +94,7 @@ public class InputManager : SingletonComponent<InputManager>
         if (removeKey) RemoveKey(K);
     }
 
-    public void registerAxis(string axe, JoystickEvent kEvent)
+    public void RegisterAxis(string axe, JoystickEvent kEvent)
     {
 
         if (axisEvents.ContainsKey(axe))
@@ -106,7 +106,7 @@ public class InputManager : SingletonComponent<InputManager>
         }
     }
 
-    public void unRegisterAxis(string axe, JoystickEvent kEvent, bool removeKey)
+    public void UnregisterAxis(string axe, JoystickEvent kEvent, bool removeKey)
     {
         if (axisEvents.ContainsKey(axe))
         {

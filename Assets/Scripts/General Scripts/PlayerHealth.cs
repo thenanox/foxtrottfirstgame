@@ -19,8 +19,8 @@ public class PlayerHealth : MonoBehaviour {
         source.PlayOneShot(hurt, 0.4f);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<MovementController>().enabled = false;
-        gameObject.GetComponent<WeaponCursor>().enabled = false;
-        gameObject.GetComponent<Weapon>().enabled = false;
+        gameObject.GetComponent<WeaponCursor>().Disable();
+        gameObject.GetComponent<Weapon>().Disable();
         alive = false;
         Invoke("reloadScene", 2.0f);
     }

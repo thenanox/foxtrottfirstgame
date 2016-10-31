@@ -15,4 +15,5 @@ public class Elements : MonoBehaviour
     public GameObject laserPrefab3;
     public GameObject laserPrefab4;
     public GameObject boxPrefab;
+    public GameObject emptyPrefab;
 }

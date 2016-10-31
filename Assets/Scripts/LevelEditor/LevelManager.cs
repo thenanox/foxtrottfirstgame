@@ -44,34 +44,68 @@ public class LevelManager : MonoBehaviour
             }
             count++;
         }
+        for (int i = 0; i < levelElements.Count; i++)
+        {
+            GameObject part = levelElements[i];
+            if (part != null && part.gameObject.transform.position == location)
+            {
+                Debug.Log("Element Location: " + part.gameObject.transform.position + ", location:" + location);
+                currentLevel.elements[i] = 'x';
+                Destroy(part);
+                continue;
+            }
+            count++;
+        }
     }
 
     public void Build()
     {
-        levelMatrix = new List<GameObject>();
-        levelElements = new List<GameObject>();
+        levelMatrix = new List<GameObject>(738);
+        levelElements = new List<GameObject>(738);
         int width = 0;
         for (int i = 0; i < 18; i++)
         {
             for (int j = 0; j < 41; j++)
             {
-                if (currentLevel.tiles[j + width] == 'P')
+                if (currentLevel.elements[j + width] == 'P')
                 {
                     levelElements.Add((GameObject)GameObject.Instantiate(elements.playerPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
-                else if (currentLevel.tiles[j + width] == 'E')
+                else if (currentLevel.elements[j + width] == 'E')
                 {
                     levelElements.Add((GameObject)GameObject.Instantiate(elements.exitDoorPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '2')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab1, new Vector2(j, i), Quaternion.identity, this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '4')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab2, new Vector2(j, i), Quaternion.Euler(0, 0, 90), this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '6')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab3, new Vector2(j, i), Quaternion.Euler(0, 0, 180), this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '8')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab4, new Vector2(j, i), Quaternion.Euler(0, 0, 270), this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '5')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.boxPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                }
+                else if (currentLevel.elements[j + width] == 'x')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.emptyPrefab, new Vector2(-1, -1), Quaternion.identity, this.transform));
                 }
                 if (currentLevel.tiles[j + width] == '1')
                 {
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                    levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
                 else if (currentLevel.tiles[j + width] == '0')
                 {
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.foregroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                    levelMatrix.Add((GameObject)GameObject.Instantiate(elements.foregroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
             }
             width += 41;
@@ -87,15 +121,16 @@ public class LevelManager : MonoBehaviour
             {
                 GameObject.Destroy(target);
             }
-            for(int i = 0; i < currentLevel.tiles.Length; i++)
-            {
-                if(currentLevel.tiles[i] == 'P')
+            for (int i = 0; i < currentLevel.elements.Length; i++){
+                if(currentLevel.elements[i] == 'P')
                 {
-                    currentLevel.tiles[i] = '1';
+                    currentLevel.elements[i] = 'x';
+                    break;
                 }
             }
-            currentLevel.tiles[currentPosition] = 'P';
-            levelElements.Add((GameObject)GameObject.Instantiate(elements.playerPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = 'P';
+            currentLevel.tiles[currentPosition] = '1';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.playerPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
             levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.backgroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.exitDoorPrefab)
@@ -104,41 +139,53 @@ public class LevelManager : MonoBehaviour
             {
                 GameObject.Destroy(target);
             }
-            for (int i = 0; i < currentLevel.tiles.Length; i++)
+            for (int i = 0; i < currentLevel.elements.Length; i++)
             {
-                if (currentLevel.tiles[i] == 'E')
+                if (currentLevel.elements[i] == 'E')
                 {
-                    currentLevel.tiles[i] = '1';
+                    currentLevel.elements[i] = 'x';
+                    break;
                 }
             }
-            currentLevel.tiles[currentPosition] = 'E';
-            levelElements.Add((GameObject)GameObject.Instantiate(elements.exitDoorPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = 'E';
+            currentLevel.tiles[currentPosition] = '1';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.exitDoorPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
             levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.backgroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.laserPrefab1)
         {
-            currentLevel.tiles[currentPosition] = '3';
-            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab1, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = '2';
+            currentLevel.tiles[currentPosition] = '0';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab1, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.foregroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.laserPrefab2)
         {
-            currentLevel.tiles[currentPosition] = '4';
-            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab2, location, Quaternion.Euler(new Vector3(0, 0, 90)), GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = '4';
+            currentLevel.tiles[currentPosition] = '0';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab2, location, Quaternion.Euler(0, 0, 90), GameObject.Find("LevelEditor").transform));
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.foregroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.laserPrefab3)
         {
-            currentLevel.tiles[currentPosition] = '5';
-            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab3, location, Quaternion.Euler(new Vector3(0, 0, 180)), GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = '6';
+            currentLevel.tiles[currentPosition] = '0';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab3, location, Quaternion.Euler(0, 0, 180), GameObject.Find("LevelEditor").transform));
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.foregroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.laserPrefab4)
         {
-            currentLevel.tiles[currentPosition] = '6';
-            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab4, location, Quaternion.Euler(new Vector3(0, 0, 270)), GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = '8';
+            currentLevel.tiles[currentPosition] = '0';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.laserPrefab4, location, Quaternion.Euler(0, 0, 270), GameObject.Find("LevelEditor").transform));
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.foregroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.boxPrefab)
         {
-            currentLevel.tiles[currentPosition] = 'B';
-            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.boxPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+            currentLevel.elements[currentPosition] = '5';
+            currentLevel.tiles[currentPosition] = '1';
+            levelElements[currentPosition] = ((GameObject)GameObject.Instantiate(elements.boxPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
+            levelMatrix[currentPosition] = ((GameObject)GameObject.Instantiate(elements.backgroundPrefab, location, Quaternion.identity, GameObject.Find("LevelEditor").transform));
         }
         else if (part == elements.backgroundPrefab)
         {
@@ -188,10 +235,22 @@ public class LevelManager : MonoBehaviour
             }
             levelElements.Clear();
         }
-        levelMatrix = new List<GameObject>();
-        levelElements = new List<GameObject>();
+        levelMatrix = new List<GameObject>(738);
+        levelElements = new List<GameObject>(738);
         Build();
         Transform();
+    }
+
+    public void Transformer(GameObject tileToTransform, char value)
+    {
+        for (int i = 0; i < 738; i++)
+        {
+            if (levelMatrix[i] == tileToTransform)
+            {
+                currentLevel.tiles[i] = value;
+                Transform();
+            }
+        }
     }
 
     public void Transform()
@@ -255,12 +314,6 @@ public class LevelManager : MonoBehaviour
             else
             {
                 tiles[6] = currentLevel.tiles[tileSelected - 41];
-            }
-            for(int i = 0; i < 8;i++) {
-                if (tiles[i] == 'P' || tiles[i] == 'E')
-                {
-                    tiles[i] = '1';
-                }
             }
             string fileName = Convert.ToInt32(new string(tiles), 2).ToString();
             SpriteRenderer sr = this.levelMatrix[tileSelected].GetComponent<SpriteRenderer>();

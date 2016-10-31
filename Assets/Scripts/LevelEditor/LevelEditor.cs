@@ -40,29 +40,38 @@ public class LevelEditor : MonoBehaviour {
             {
                 _levelManager.AddPart(SelectedPrefab, _cursorPosition);
             }
-            if (Input.GetKey(KeyCode.F5))
+            if (Input.GetButtonDown("Save"))
             {
                 _levelManager.SaveData();
             }
-            if (Input.GetKey(KeyCode.F9))
+            if (Input.GetButtonDown("Load"))
             {
                 _levelManager.LoadData();
             }
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("PutPiece"))
             {
-                _levelManager.AddPart(SelectedPrefab, _cursorPosition);
                 _mousePressed = true;
             }
-            if (Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("PutPiece"))
             {
                 _mousePressed = false;
             }
-            if (Input.GetAxis("Jump2") > 0)
+            if (Input.GetAxis("ChangePiece") > 0)
             {
                 _selectedPartNumber++;
                 if (_selectedPartNumber >= Prefabs.Count)
                 {
                     _selectedPartNumber = 0;
+                }
+
+                SelectedPrefab = Prefabs[_selectedPartNumber];
+            }
+            if (Input.GetAxis("ChangePiece") < 0)
+            {
+                _selectedPartNumber--;
+                if (_selectedPartNumber < 0)
+                {
+                    _selectedPartNumber = Prefabs.Count-1;
                 }
 
                 SelectedPrefab = Prefabs[_selectedPartNumber];

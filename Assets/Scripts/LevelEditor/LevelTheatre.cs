@@ -23,32 +23,50 @@ public class LevelTheatre : MonoBehaviour
 
     public void Build()
     {
-        levelMatrix = new List<GameObject>();
-        levelElements = new List<GameObject>();
+        levelMatrix = new List<GameObject>(738);
+        levelElements = new List<GameObject>(738);
         int width = 0;
         for (int i = 0; i < 18; i++)
         {
             for (int j = 0; j < 41; j++)
             {
-                if (currentLevel.tiles[j + width] == 'P')
+                if (currentLevel.elements[j + width] == 'P')
                 {
                     levelElements.Add((GameObject)GameObject.Instantiate(elements.playerPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
-                else if (currentLevel.tiles[j + width] == 'E')
+                else if (currentLevel.elements[j + width] == 'E')
                 {
                     GameObject go = (GameObject)GameObject.Instantiate(elements.exitDoorPrefab, new Vector2(j, i), Quaternion.identity, this.transform);
                     go.GetComponent<EndLevel>().numberLevel = level + 1;
                     levelElements.Add(go);
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '2')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab1, new Vector2(j, i), Quaternion.identity, this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '4')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab2, new Vector2(j, i), Quaternion.Euler(0,0,90), this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '6')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab3, new Vector2(j, i), Quaternion.Euler(0, 0, 180), this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '8')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.laserPrefab4, new Vector2(j, i), Quaternion.Euler(0, 0, 270), this.transform));
+                }
+                else if (currentLevel.elements[j + width] == '5')
+                {
+                    levelElements.Add((GameObject)GameObject.Instantiate(elements.boxPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
                 if (currentLevel.tiles[j + width] == '1')
                 {
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                    levelMatrix.Add((GameObject)GameObject.Instantiate(elements.backgroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
                 else if (currentLevel.tiles[j + width] == '0')
                 {
-                    this.levelMatrix.Add((GameObject)GameObject.Instantiate(elements.foregroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
+                    levelMatrix.Add((GameObject)GameObject.Instantiate(elements.foregroundPrefab, new Vector2(j, i), Quaternion.identity, this.transform));
                 }
             }
             width += 41;
@@ -96,8 +114,8 @@ public class LevelTheatre : MonoBehaviour
             }
             levelElements.Clear();
         }
-        levelMatrix = new List<GameObject>();
-        levelElements = new List<GameObject>();
+        levelMatrix = new List<GameObject>(738);
+        levelElements = new List<GameObject>(738);
         Build();
         Transform();
     }
@@ -175,12 +193,6 @@ public class LevelTheatre : MonoBehaviour
             else
             {
                 tiles[6] = currentLevel.tiles[tileSelected - 41];
-            }
-            for(int i = 0; i < 8;i++) {
-                if (tiles[i] == 'P' || tiles[i] == 'E')
-                {
-                    tiles[i] = '1';
-                }
             }
             string fileName = Convert.ToInt32(new string(tiles), 2).ToString();
             SpriteRenderer sr = this.levelMatrix[tileSelected].GetComponent<SpriteRenderer>();

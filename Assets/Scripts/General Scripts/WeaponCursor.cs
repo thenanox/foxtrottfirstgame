@@ -27,16 +27,21 @@ public class WeaponCursor : MonoBehaviour {
 
 	void Start()
     {
-        InputManager.Instance.registerAxis("MoveCursorX", OnCursorX);
-        InputManager.Instance.registerAxis("MoveCursorY", OnCursorY);
+        InputManager.Instance.RegisterAxis("MoveCursorX", OnCursorX);
+        InputManager.Instance.RegisterAxis("MoveCursorY", OnCursorY);
 
         cursor.transform.position = new Vector3(Mathf.Round(transform.position.x) + 1, Mathf.Round(transform.position.y), 0);
     }
 
+    public void Disable()
+    {
+        InputManager.Instance.UnregisterAxis("MoveCursorX", OnCursorX, true);
+        InputManager.Instance.UnregisterAxis("MoveCursorY", OnCursorY, true);
+    }
+
     void OnDestroy()
     {
-        InputManager.Instance.unRegisterAxis("MoveCursorX", OnCursorX, true);
-        InputManager.Instance.unRegisterAxis("MoveCursorY", OnCursorY, true);
+        Disable();
         Destroy(cursor);
     }
 

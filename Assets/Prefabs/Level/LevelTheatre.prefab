@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000013798267414}
   - 114: {fileID: 114000012788637004}
   - 114: {fileID: 114000013454700140}
+  - 114: {fileID: 114000011164425360}
   m_Layer: 0
   m_Name: LevelTheatre
   m_TagString: Untagged
@@ -41,6 +42,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000011164425360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012524038514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83becb09878cbcd4c9adad2fc702a710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012788637004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02d0a205fd5e494980cfcabbd866207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 3
   elements: {fileID: 114000013454700140}
 --- !u!114 &114000013454700140
 MonoBehaviour:
@@ -73,5 +85,14 @@ MonoBehaviour:
     type: 2}
   playerPrefab: {fileID: 1000013361944486, guid: a45985f4fdcf3694c95ba4600f4171dc,
     type: 2}
-  cursorPrefab: {fileID: 1000012920602160, guid: 37591e63dd4d0624cbb44c1939f65a6c,
+  laserPrefab1: {fileID: 1000013536627996, guid: c136a4b7df63feb4fb475d244d17ab8a,
+    type: 2}
+  laserPrefab2: {fileID: 1000013536627996, guid: cee0e65e98aa93641b058950be8f397e,
+    type: 2}
+  laserPrefab3: {fileID: 1000013536627996, guid: e345e67f8d4b02d47ad33f4f54bf8a77,
+    type: 2}
+  laserPrefab4: {fileID: 1000013536627996, guid: 97d459ae684c0ec44b62e4a322a14daa,
+    type: 2}
+  boxPrefab: {fileID: 1000011058977492, guid: 60fc6beeddf6d344bb847fd075505c37, type: 2}
+  emptyPrefab: {fileID: 1000010319776706, guid: f528b382cf5610b419a75986a15fe1ad,
     type: 2}
