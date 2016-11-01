@@ -79,22 +79,10 @@ public class LevelTheatre : MonoBehaviour
         LoadData();
     }
 
-    public void SaveData()
-    {
-        if (!Directory.Exists("Assets/Lvl"))
-            Directory.CreateDirectory("Assets/Lvl");
-
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream saveFile = File.Create("Assets/Lvl/level" + level);
-
-        formatter.Serialize(saveFile, currentLevel);
-        saveFile.Close();
-    }
-
     public void LoadData()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream saveFile = File.Open("Assets/Lvl/level" + level, FileMode.Open);
+        FileStream saveFile = File.Open(Application.dataPath + "/StreamingAssets/Lvl/level" + level, FileMode.Open);
 
         currentLevel = (Level)formatter.Deserialize(saveFile);
         saveFile.Close();

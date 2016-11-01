@@ -16,7 +16,14 @@ public class EndLevel : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            lt.ChangeLevel(numberLevel);
+            if(numberLevel == 6)
+            {
+                Destroy(GameObject.Find("MusicManager(Clone)"));
+                SceneManager.LoadScene("MenuPrincipalEnd");
+            } else
+            {
+                lt.ChangeLevel(numberLevel);
+            }
         }
     }
 }

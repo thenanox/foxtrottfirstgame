@@ -202,11 +202,11 @@ public class LevelManager : MonoBehaviour
 
     public void SaveData()
     {
-        if (!Directory.Exists("Assets/Lvl"))
-            Directory.CreateDirectory("Assets/Lvl");
+        if (!Directory.Exists("Assets/StreamingAssets/Lvl"))
+            Directory.CreateDirectory("Assets/StreamingAssets/Lvl");
 
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream saveFile = File.Create("Assets/Lvl/level" + number.text);
+        FileStream saveFile = File.Create("Assets/StreamingAssets/Lvl/level" + number.text);
 
         formatter.Serialize(saveFile, currentLevel);
         saveFile.Close();
@@ -215,7 +215,7 @@ public class LevelManager : MonoBehaviour
     public void LoadData()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream saveFile = File.Open("Assets/Lvl/level" + number.text, FileMode.Open);
+        FileStream saveFile = File.Open("Assets/StreamingAssets/Lvl/level" + number.text, FileMode.Open);
 
         currentLevel = (Level)formatter.Deserialize(saveFile);
         saveFile.Close();

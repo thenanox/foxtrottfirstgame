@@ -36,18 +36,11 @@ public class MovementController : MonoBehaviour
     public float _jumpSpeed = 8.4f;
     public float _jumpMaxTime = 0.8f;
     private bool _canJump = false;
-    private bool _jumpPressed = false;
-    private Vector3 _externalForce = Vector3.zero;
-    public float _externalForceTime = 0.2f;
-
-    private Transform _transform;
 
     public Controller2D controller;
 
     Vector3 inputmovement = Vector3.zero;
 
-    [HideInInspector]
-    public float _componentInitTimeStamp = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -161,25 +154,6 @@ public class MovementController : MonoBehaviour
     public Vector3 getVelocity()
     {
         return _velocity;
-    }
-
-    public void AddExternalForce(Vector2 force, float maxForce = float.MaxValue)
-    {
-        if (!_isTouchingGround)
-            _velocity.y = 0.0f;
-
-        _velocity += force;
-
-        // Should cap the force rather than the velocity
-        if (_velocity.y > maxForce)
-            _velocity.y = maxForce;
-
-        _isTouchingGround = false;
-    }
-
-    public void AddExternalAcceleration(Vector2 vAcceleration)
-    {
-        _velocity += vAcceleration * Time.deltaTime;
     }
 
     public void OnInputXAxis(string axe, float value)

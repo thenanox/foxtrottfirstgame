@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4191392e52db2bb4781a092cd439086a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 4
+  maxDistance: 5
   cursorSensitivity: 11
   cursor: {fileID: 1000012920602160, guid: 37591e63dd4d0624cbb44c1939f65a6c, type: 2}
 --- !u!114 &114000010604042776
@@ -207,9 +207,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   _jumpSpeed: 8.4
   _jumpMaxTime: 0.8
-  _externalForceTime: 0.2
   controller: {fileID: 114000012418363102}
-  _componentInitTimeStamp: 0
 --- !u!114 &114000011306791838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 0}
   hurt: {fileID: 8300000, guid: 3485cb23116290c4180a5043e069e389, type: 3}
+  lt: {fileID: 0}
 --- !u!212 &212000012217070756
 SpriteRenderer:
   m_ObjectHideFlags: 1

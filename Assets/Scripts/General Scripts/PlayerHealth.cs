@@ -6,12 +6,14 @@ public class PlayerHealth : MonoBehaviour {
 
     public AudioSource source;
     public AudioClip hurt;
+    public LevelTheatre lt;
 
     private bool alive = true;
 
     // Use this for initialization
     void Awake () {
         source = GetComponent<AudioSource>();
+        lt = GetComponentInParent<LevelTheatre>();
 	}
     
     public void Kill()
@@ -22,7 +24,13 @@ public class PlayerHealth : MonoBehaviour {
         gameObject.GetComponent<WeaponCursor>().Disable();
         gameObject.GetComponent<Weapon>().Disable();
         alive = false;
-        Invoke("reloadScene", 2.0f);
+        StartCoroutine(ReloadLevel());
+    }
+
+    IEnumerator ReloadLevel()
+    {
+        yield return new WaitForSeconds(2);
+        lt.LoadData();
     }
 
     public bool IsAlive()

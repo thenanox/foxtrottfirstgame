@@ -8,18 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/MenuPrincipal.unity
   - enabled: 1
-    path: Assets/Levels/Level1.unity
-  - enabled: 1
-    path: Assets/Levels/Level2.unity
-  - enabled: 1
-    path: Assets/Levels/Level3.unity
-  - enabled: 1
-    path: Assets/Levels/Level4.unity
-  - enabled: 1
-    path: Assets/Levels/Level5.unity
-  - enabled: 1
     path: Assets/Levels/LevelTheatre.unity
   - enabled: 1
-    path: Assets/Levels/LevelEditor.unity
-  - enabled: 1
     path: Assets/Levels/MenuPrincipalEnd.unity
+  - enabled: 1
+    path: Assets/Levels/LevelEditor.unity

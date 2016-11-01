@@ -529,7 +529,7 @@ Prefab:
     - target: {fileID: 114000011521898682, guid: fbeab5a4e94ea7947af7f70846f8ae39,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbeab5a4e94ea7947af7f70846f8ae39, type: 2}
