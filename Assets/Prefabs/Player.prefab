@@ -199,14 +199,15 @@ MonoBehaviour:
   input: {fileID: 0}
   _maxVelocity: 5
   _acceleration: 1
-  _jumpForce: 12
-  _gravity: 32
+  _jumpForce: 6
+  _gravity: 33
   jumpAllowed: 1
   _velocity: {x: 0, y: 0}
   contact: {fileID: 8300000, guid: eaed8899d28b9e04c889722fb41d165f, type: 3}
   audioSource: {fileID: 0}
-  _jumpSpeed: 8.4
-  _jumpMaxTime: 0.8
+  _jumpSpeed: 50
+  _jumpMaxTime: 0.15
+  _jumpTime: 0
   controller: {fileID: 114000012418363102}
 --- !u!114 &114000011306791838
 MonoBehaviour:

@@ -12,12 +12,12 @@ public class MovementController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     // Velocity/Acceleration values
-    public float _maxVelocity = 1.0f;
-    public float _acceleration = 2f;
-    public float _jumpForce = 5.0f;
+    public float _maxVelocity = 5.0f;
+    public float _acceleration = 1.0f;
+    public float _jumpForce = 6.0f;
     protected float _velFriction;
 
-    public float _gravity = 1.0f;
+    public float _gravity = 33.0f;
 
     // I assume for testing purposes
     public bool jumpAllowed = true;
@@ -33,9 +33,11 @@ public class MovementController : MonoBehaviour
     private bool _isTouchingCeiling = false;
 
     // Jump
-    public float _jumpSpeed = 8.4f;
-    public float _jumpMaxTime = 0.8f;
+    public float _jumpSpeed = 50.0f;
+    public float _jumpMaxTime = 0.15f;
+    public float _jumpTime = 0.0f;
     private bool _canJump = false;
+    private bool _isJumping = false;
 
     public Controller2D controller;
 
@@ -47,6 +49,7 @@ public class MovementController : MonoBehaviour
     {
         InputManager.Instance.RegisterAxis("Horizontal", OnInputXAxis);
         InputManager.Instance.RegisterKeyDown("Jump", OnJumpPressed);
+        InputManager.Instance.RegisterKeyUp("Jump", OnJumpReleased);
 
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -73,7 +76,7 @@ public class MovementController : MonoBehaviour
         }
 
         //if needed, perform jump
-        jump();
+        jump(Time.fixedDeltaTime);
         _velocity.x *= _velFriction;
         
         if (_velocity.sqrMagnitude < float.Epsilon)
@@ -139,12 +142,18 @@ public class MovementController : MonoBehaviour
             _velocity = Vector3.zero;
     }
 
-    void jump()
+    void jump(float dt)
     {
+        if (_isJumping && _jumpTime <= _jumpMaxTime)
+        {
+            _velocity.y += _jumpSpeed * dt;
+            _jumpTime += dt;
+        }
         //comprobamos si tiene una tile encima
         if (_canJump && _isTouchingGround && !_isTouchingCeiling)
         {
             _canJump = false;
+            _isJumping = true;
             _velocity.y += _jumpForce;
             _isTouchingGround = false;
             animator.SetTrigger("jump");
@@ -164,7 +173,15 @@ public class MovementController : MonoBehaviour
 
     public void OnJumpPressed(string key)
     {
-        if(_isTouchingGround)
+        if (_isTouchingGround)
+        {
             _canJump = true;
+        }
+    }
+
+    public void OnJumpReleased(string key)
+    {
+        _isJumping = false;
+        _jumpTime = 0.0f;
     }
 }
