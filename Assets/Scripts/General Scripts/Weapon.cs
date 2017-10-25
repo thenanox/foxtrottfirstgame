@@ -122,11 +122,11 @@ public class Weapon : MonoBehaviour {
 
     void Activate(string axe, float value)
     {
-        if(value > 0.4f && !activated)
+        if(value < -0.3f && !activated)
         {
             activated = true;
             TransformTile();
-        } else if(value < 0.4f)
+        } else if(value > -0.3f)
         {
             activated = false;
         }
