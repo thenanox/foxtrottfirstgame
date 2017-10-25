@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -19,6 +20,19 @@ public class LevelTheatre : MonoBehaviour
     {
         elements = gameObject.GetComponent<Elements>();
         LoadData();
+        InputManager.Instance.RegisterKeyDown("Exit", Exit);
+    }
+
+    public void Disable()
+    {
+        InputManager.Instance.UnregisterKeyDown("Exit", Exit, true);
+    }
+
+    void Exit(string key)
+    {
+        SceneManager.LoadScene("Levels/MenuPrincipal");
+        GameObject sound = GameObject.Find("MusicManager(Clone)");
+        Destroy(sound);
     }
 
     public void Build()

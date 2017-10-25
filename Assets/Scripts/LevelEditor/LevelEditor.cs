@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class LevelEditor : MonoBehaviour {
 
@@ -29,9 +30,22 @@ public class LevelEditor : MonoBehaviour {
         Prefabs.Add(elements.boxPrefab);
         SelectedPrefab = Prefabs[_selectedPartNumber];
         _levelManager = GetComponent<LevelManager>();
+        InputManager.Instance.RegisterKeyDown("Exit", Exit);
     }
-	
-	void Update () {
+
+    public void Disable()
+    {
+        InputManager.Instance.UnregisterKeyDown("Exit", Exit, true);
+    }
+
+    void Exit(string key)
+    {
+        SceneManager.LoadScene("Levels/MenuPrincipal");
+        GameObject sound = GameObject.Find("MusicManager(Clone)");
+        Destroy(sound);
+    }
+
+    void Update () {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 tileSelected = new Vector2(Mathf.Round(mousePosition.x), Mathf.Round(mousePosition.y));
         if(tileSelected.x >= 1 && tileSelected.x <= 39 && tileSelected.y >= 1 && tileSelected.y <= 16)

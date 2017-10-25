@@ -16,13 +16,11 @@ public class Weapon : MonoBehaviour {
     {
         cursor = GetComponent<WeaponCursor>().cursor;
         audiosource = GetComponent<AudioSource>();
-        InputManager.Instance.RegisterKeyDown("Exit", Exit);
         InputManager.Instance.RegisterAxis("Activate", Activate);
     }
 
     public void Disable()
     {
-        InputManager.Instance.UnregisterKeyDown("Exit", Exit, true);
         InputManager.Instance.UnregisterAxis("Activate", Activate, true);
     }
 
@@ -120,13 +118,6 @@ public class Weapon : MonoBehaviour {
                 cursor.transform.Translate(Vector3.down);
             }
         }
-    }
-    
-    void Exit(string key)
-    {
-        SceneManager.LoadScene("Levels/MenuPrincipal");
-        GameObject sound = GameObject.Find("MusicManager(Clone)");
-        Destroy(sound);
     }
 
     void Activate(string axe, float value)
