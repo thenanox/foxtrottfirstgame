@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TransformableTile : BaseTile {
+public class TransformableTile : MonoBehaviour {
 
     private int state = 0;
     private Sprite originalSprite;

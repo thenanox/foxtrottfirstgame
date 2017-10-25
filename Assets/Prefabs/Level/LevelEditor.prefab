@@ -16,12 +16,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011099740944}
-  - 114: {fileID: 114000013671136568}
-  - 114: {fileID: 114000013617173840}
-  - 114: {fileID: 114000011368771856}
+  - component: {fileID: 4000011099740944}
+  - component: {fileID: 114000013671136568}
+  - component: {fileID: 114000013617173840}
+  - component: {fileID: 114000011368771856}
+  - component: {fileID: 114996270416069570}
   m_Layer: 0
   m_Name: LevelEditor
   m_TagString: Untagged
@@ -38,10 +39,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011368771856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,13 +64,15 @@ MonoBehaviour:
     type: 2}
   laserPrefab1: {fileID: 1000013536627996, guid: c136a4b7df63feb4fb475d244d17ab8a,
     type: 2}
-  laserPrefab2: {fileID: 1000013536627996, guid: 25c29dcb654ad3443af7d767f56d1498,
+  laserPrefab2: {fileID: 1000013536627996, guid: cee0e65e98aa93641b058950be8f397e,
     type: 2}
-  laserPrefab3: {fileID: 1000013536627996, guid: fb21b565931df974faf1d722bd960d7c,
+  laserPrefab3: {fileID: 1000013536627996, guid: e345e67f8d4b02d47ad33f4f54bf8a77,
     type: 2}
-  laserPrefab4: {fileID: 1000013536627996, guid: 0674247e3de12a74e89a92986c1918cd,
+  laserPrefab4: {fileID: 1000013536627996, guid: 97d459ae684c0ec44b62e4a322a14daa,
     type: 2}
   boxPrefab: {fileID: 1000011058977492, guid: 5b5c03cb50ae3bc41b9275a16eec3860, type: 2}
+  emptyPrefab: {fileID: 1000010319776706, guid: f528b382cf5610b419a75986a15fe1ad,
+    type: 2}
 --- !u!114 &114000013617173840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,3 +101,14 @@ MonoBehaviour:
   elements: {fileID: 114000011368771856}
   SelectedPrefab: {fileID: 0}
   Cursor: {fileID: 0}
+--- !u!114 &114996270416069570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012201331290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83becb09878cbcd4c9adad2fc702a710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

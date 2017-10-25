@@ -16,12 +16,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013798267414}
-  - 114: {fileID: 114000012788637004}
-  - 114: {fileID: 114000013454700140}
-  - 114: {fileID: 114000011164425360}
+  - component: {fileID: 4000013798267414}
+  - component: {fileID: 114000012788637004}
+  - component: {fileID: 114000013454700140}
+  - component: {fileID: 114000011164425360}
   m_Layer: 0
   m_Name: LevelTheatre
   m_TagString: Untagged
@@ -38,10 +38,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011164425360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02d0a205fd5e494980cfcabbd866207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  level: 1
   elements: {fileID: 114000013454700140}
 --- !u!114 &114000013454700140
 MonoBehaviour:
