@@ -12,7 +12,6 @@ public class InputManager : SingletonComponent<InputManager>
     private List<string> axis;
     private Dictionary<string, KeyEvent> keyDownEvents, keyUpEvents;
     private Dictionary<string, JoystickEvent> axisEvents;
-    private event JoystickEvent keyEventHandler;
 
     bool isInputEnable = true;
 
